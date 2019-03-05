@@ -116,6 +116,15 @@ module.exports = function (grunt) {
 				}
 			}
 		},
+		wp_deploy: {
+			deploy: {
+				options: {
+					plugin_slug: 'cloud-search',
+					build_dir: 'deploy',
+					assets_dir: 'assets'
+				},
+			}
+		},
         uglify: {
             options: {
                 preserveComments: false
@@ -174,7 +183,7 @@ module.exports = function (grunt) {
     ]);
 	
     /**
-     * BUILD GIT README FILE AND MAYBE SOME SASS LATER
+     * BUILD GIT README FILE AND MAYBE SOME SASS LATER?
      */
 	grunt.registerTask( 'default', [
 		'wp_readme_to_markdown' 
@@ -190,8 +199,8 @@ module.exports = function (grunt) {
         'uglify',
         'cssmin',
 		'copy:deploy', 
-		//'wp_deploy:deploy',
-		//'clean:deploy'
+		'wp_deploy:deploy',
+		'clean:deploy'
 	]);
 
 };
