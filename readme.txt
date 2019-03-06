@@ -1,15 +1,15 @@
-# CloudSearch #
-**Contributors:** [lando1982](https://profiles.wordpress.org/lando1982), [sburdett](https://profiles.wordpress.org/sburdett), [methnen](https://profiles.wordpress.org/methnen)  
-**Tags:** aws, amazon, cloud, search, research, CloudSearch, cs, suggest, facet  
-**Requires at least:** 4.4  
-**Tested up to:** 5.1  
-**Stable tag:** 2.5.1  
-**License:** GPLv3  
-**License URI:** http://www.gnu.org/licenses/gpl.html  
+=== CloudSearch ===
+Contributors: lando1982, sburdett, methnen
+Tags: aws, amazon, cloud, search, research, CloudSearch, cs, suggest, facet
+Requires at least: 4.4
+Tested up to: 5.1
+Stable tag: 2.5.1
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl.html
 
 CloudSearch is a flexible plugin that allows you to leverage the search index power of Amazon CloudSearch in your WordPress site.
 
-## Description ##
+== Description ==
 
 CloudSearch is a flexible plugin that allows you to leverage the search index power of Amazon CloudSearch in your WordPress site.
 To use this plugin you'll need an Amazon Web Services account. Attention: Amazon CloudSearch is a paid service and will require a credit card.
@@ -32,7 +32,7 @@ Minimum requirements:
 * PHP Version 5.3
 * Amazon Web Services account with CloudSearch enabled
 
-### Usage ###
+= Usage =
 
 1. Go to `CloudSearch -> Settings`
 2. Enter your `Amazon access key ID`, `Secret access key` and the `Amazon region` where you have created the CloudSearch index
@@ -46,197 +46,187 @@ Minimum requirements:
 
 Links: [Author's Site](http://www.andrealandonio.it)
 
-## Installation ##
+== Installation ==
 
 1. Unzip the downloaded `cloud-search` zip file
 2. Upload the `cloud-search` folder and its contents into the `wp-content/plugins/` directory of your WordPress installation
 3. Activate `cloud-search` from Plugins page
 
-## Frequently Asked Questions ##
+== Frequently Asked Questions ==
 
-### How much does the plugin cost? ###
+= How much does the plugin cost? =
 
 There is no charge for the plugin. The only charges you incur are for usage of Amazon CloudSearch.
 
-### Works on multisite? ###
+= Works on multisite? =
 
 Yes, for every site you have a specific configuration but you cannot search documents between different sites with defaults configuration. You need to customize search scripts.
 
-### Does the plugin support multi languages? ###
+= Does the plugin support multi languages? =
 
 The plugin does not work with other languages plugins. However, there is a alternative and simple way to work with other languages. An explanation could be found in the plugin help page.
 
-### Which post types and fields are indexed by default? How do I modify indexed schema? ###
+= Which post types and fields are indexed by default? How do I modify indexed schema? =
 
 By default, only posts and standard fields are indexed. To modify this, in the admin "Setting" section you can add other post types, fields and taxonomies (also custom objects).
 
-### Supports facets? ###
+= Supports facets? =
 
 Yes, you can use API for retrieve facet information.
 
-### Supports field weightings? ###
+= Supports field weightings? =
 
 Yes, you can add a weight to some fields to boost up the relevance of the results.
 
-### Supports for WooCommerce product tags and EDD tags? ###
+= Supports for WooCommerce product tags and EDD tags? =
 
 Yes, you can manage WooCommerce product tags and EDD tags simply adding a little code in a custom plugin or in the functions.php of your theme.
 
-## Screenshots ##
+== Screenshots ==
 
-### 1. Settings page ###
-![Settings page](https://ps.w.org/cloud-search/trunk/screenshot-1.jpg)
+1. Settings page
+2. Manage page
+3. Front page
+4. Other settings (results and highlighting)
+5. Other settings (suggestions)
 
-### 2. Manage page ###
-![Manage page](https://ps.w.org/cloud-search/trunk/screenshot-2.jpg)
+== Changelog ==
 
-### 3. Front page ###
-![Front page](https://ps.w.org/cloud-search/trunk/screenshot-3.jpg)
-
-### 4. Other settings (results and highlighting) ###
-![Other settings (results and highlighting)](https://ps.w.org/cloud-search/trunk/screenshot-4.jpg)
-
-### 5. Other settings (suggestions) ###
-![Other settings (suggestions)](https://ps.w.org/cloud-search/trunk/screenshot-5.jpg)
-
-
-## Changelog ##
-
-### 2.5.1 - 2019-03-05 ###
+= 2.5.1 - 2019-03-05 =
 * Added "acs_post_transition_allowed_statuses" filter hook
 
-### 2.5.0 - 2019-02-28 ###
+= 2.5.0 - 2019-02-28 =
 * Removal of the dependency on the Amazon Web Services plugin
 * Fixed PHP strict issues on code
 
-### 2.4.0 - 2018-11-07 ###
+= 2.4.0 - 2018-11-07 =
 * Added "post_content_original" field in search actions
 * Added "Import / Export" settings page
 
-### 2.3.0 - 2018-10-15 ###
+= 2.3.0 - 2018-10-15 =
 * Added sortable custom field support
 * Extend default sort fields with sortable custom fields
 
-### 2.2.0 - 2018-10-01 ###
+= 2.2.0 - 2018-10-01 =
 * Added invalid chars remove feature before docs syncing
 
-### 2.1.0 - 2018-09-28 ###
+= 2.1.0 - 2018-09-28 =
 * Fixed delete documents action
 * Added usage of WordPress language instead the default ACS::ANALYSIS_SCHEMA constant
 
-### 2.0.0 - 2018-09-20 ###
+= 2.0.0 - 2018-09-20 =
 * Added term support to sync and search also terms on CloudSearch index (need WP_Term support, available from WordPress 4.4)
 
-### 1.8.0 - 2018-05-23 ###
+= 1.8.0 - 2018-05-23 =
 * Added custom search page CSS on admin settings section
 * Manage 'the_posts' filter
 * Removed '_score' field from update documents operation
 
-### 1.7.0 - 2018-05-17 ###
+= 1.7.0 - 2018-05-17 =
 * Added stop sync/delete button on admin manage section
 
-### 1.6.7 - 2018-05-11 ###
+= 1.6.7 - 2018-05-11 =
 * Fixed warning/notice on 'acs_plugin_disable_search_wp_query'
 * Added 'Filters' section on documentation page
 
-### 1.6.6 - 2018-04-20 ###
+= 1.6.6 - 2018-04-20 =
 * Added definition of search endpoint and domain name in wp-config.php file
 
-### 1.6.5 - 2018-04-20 ###
+= 1.6.5 - 2018-04-20 =
 * Added custom field option in results settings
 
-### 1.6.4 - 2018-04-17 ###
+= 1.6.4 - 2018-04-17 =
 * Added search template override management
 
-### 1.6.3 - 2018-04-13 ###
+= 1.6.3 - 2018-04-13 =
 * Strip shortcodes on post content/excerpt
 
-### 1.6.2 - 2018-03-29 ###
+= 1.6.2 - 2018-03-29 =
 * Added client options configuration
 
-### 1.6.1 - 2018-03-16 ###
+= 1.6.1 - 2018-03-16 =
 * Fixed site/blog ID management on multisite
 
-### 1.6.0 - 2018-02-26 ###
+= 1.6.0 - 2018-02-26 =
 * Added field weightings management
 * Removed unwanted WordPress default search page automatic query
 
-### 1.5.2 - 2017-10-04 ###
+= 1.5.2 - 2017-10-04 =
 * Fixed search query bugs
 
-### 1.5.1 - 2017-08-29 ###
+= 1.5.1 - 2017-08-29 =
 * Fixed minor notices
 
-### 1.5.0 - 2017-07-11 ###
+= 1.5.0 - 2017-07-11 =
 * Added update documents action on admin manage section
 
-### 1.4.2 - 2017-05-12 ###
+= 1.4.2 - 2017-05-12 =
 * Fixed bad connection test behavior
 
-### 1.4.1 - 2017-04-20 ###
+= 1.4.1 - 2017-04-20 =
 * Added private fields selection support
 
-### 1.4.0 - 2017-04-20 ###
+= 1.4.0 - 2017-04-20 =
 * Added facet support
 
-### 1.3.3 - 2017-04-12 ###
+= 1.3.3 - 2017-04-12 =
 * Added hide menu sections functionality
 
-### 1.3.2 - 2017-04-03 ###
+= 1.3.2 - 2017-04-03 =
 * Added exclude pages/posts support, removed notices, moved Amazon access keys in wp-config.php
 
-### 1.3.1 - 2017-03-14 ###
+= 1.3.1 - 2017-03-14 =
 * Added screen readers support
 
-### 1.3.0 - 2017-02-20 ###
+= 1.3.0 - 2017-02-20 =
 * Added sort on multiple fields functionality
 
-### 1.2.6 - 2017-02-08 ###
+= 1.2.6 - 2017-02-08 =
 * Added site/blog info override functionality
 
-### 1.2.5 - 2017-02-05 ###
+= 1.2.5 - 2017-02-05 =
 * Removed auto-focus from suggest jquery
 * Fixed bad search query creation
 * Added addcslashes for text highlighting
 * Added preserve text functionality on search index documents method
 
-### 1.2.4 - 2017-01-28 ###
+= 1.2.4 - 2017-01-28 =
 * Reviewed auto suggest introducing search titles filter
 
-### 1.2.3 - 2017-01-01 ###
+= 1.2.3 - 2017-01-01 =
 * Added theme "Twenty Seventeen" support
 
-### 1.2.2 - 2016-11-15 ###
+= 1.2.2 - 2016-11-15 =
 * Added "Multiple Post Thumbnails" plugin support
 
-### 1.2.1 - 2016-11-08 ###
+= 1.2.1 - 2016-11-08 =
 * Added IAM connection
 
-### 1.2.0 - 2016-11-01 ###
+= 1.2.0 - 2016-11-01 =
 * Added auto suggest on search field
 
-### 1.1.1 - 2016-10-10 ###
+= 1.1.1 - 2016-10-10 =
 * Fixed invalid UTF-8 chars validation errors
 
-### 1.1.0 - 2016-10-09 ###
+= 1.1.0 - 2016-10-09 =
 * Added Asia Pacific (Seoul) AWS region
 * Added text length selection on result snippet
 * Added highlights on result snippet
 * Added "extras" field management in services
 
-### 1.0.3 - 2016-07-26 ###
+= 1.0.3 - 2016-07-26 =
 * Added fields manipulation
 
-### 1.0.2 - 2016-05-31 ###
+= 1.0.2 - 2016-05-31 =
 * Fixed "post_author_name" empty field error
 
-### 1.0.1 - 2016-02-26 ###
+= 1.0.1 - 2016-02-26 =
 * Fixed "post_author_name" field get method
 
-### 1.0.0 - 2016-02-14 ###
+= 1.0.0 - 2016-02-14 =
 * First release
 
-## Upgrade Notice ##
+== Upgrade Notice ==
 
-### 1.0.0 ###
+= 1.0.0 =
 This version requires PHP 5.3+
