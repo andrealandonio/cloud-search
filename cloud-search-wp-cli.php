@@ -97,11 +97,11 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 		// Run indexing action
 		try {
 			$result = acs_run_indexing();
-			$message = new ACS_Message( '<strong>Success</strong>: Run indexing started for %s fields', $result->get_data()[ 'fields_managed' ], ACS_Message::TYPE_INFO );
+			$message = new ACS_Message( 'Run indexing started for %s fields', $result->get_data()[ 'fields_managed' ], ACS_Message::TYPE_INFO );
 
 			$this->success( $message->get_text() );
 		} catch ( Exception $e ) {
-			$message = new ACS_Message( '<strong>Error</strong>: %s', $e->getMessage(), ACS_Message::TYPE_ERROR );
+			$message = new ACS_Message( '%s', $e->getMessage(), ACS_Message::TYPE_ERROR );
 
 			$this->error( $message->get_text() );
 		}
