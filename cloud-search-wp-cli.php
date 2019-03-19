@@ -161,6 +161,7 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 		$query = new WP_Query( $query_args );
 		$total_pages = $query->max_num_pages;
 
+		// Iterate through the full results by page/chunk
 		while ( $page <= $total_pages ) {
 			$query_args['paged'] = $page;
 
@@ -204,7 +205,7 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 			$page++;
 		}
 
-		$this->success( count( $documents ) . ' documents(s) synced!' );
+		$this->success( count( $query->found_posts ) . ' documents(s) synced!' );
 	}
 
 	/**
