@@ -137,7 +137,9 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 		$acs_schema_types = $settings->acs_schema_types;
 		$acs_schema_types = $acs_schema_types ? explode( ACS::SEPARATOR, $acs_schema_types ) : array();
 
-		$get_posts_args = array(
+		$page = 1;
+
+		$query_args = array(
 			'post_type'      => $acs_schema_types,
 			'post_status'    => array(
 				'publish',
@@ -151,42 +153,55 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 			),
 			'orderby'        => 'date',
 			'sort'           => 'desc',
-			'posts_per_page' => -1
+			'posts_per_page' => ACS::SYNC_CHUNK,
+			'paged'          => $page
 		);
 
-		$documents = get_posts( $get_posts_args );
+		// Run an intiial query just to get total pages
+		$query = new WP_Query( $query_args );
+		$total_pages = $query->max_num_pages;
 
-		foreach ( $documents as $post ) {
-			// Read post exclusion field
-			$excluded = get_post_meta( $post->ID, ACS::EXCLUDE_FIELD, true );
+		while ( $page <= $total_pages ) {
+			$query_args['paged'] = $page;
 
-			// Retrieve allowed post statutes to manage
-			$allowed_statuses = apply_filters( 'acs_post_transition_allowed_statuses', array( 'publish' ), $post );
+			$this->line('Starting: Chunk ' . $page );
 
-			if ( in_array( $post->post_status, $allowed_statuses ) && ( ! isset( $excluded ) || empty( $excluded ) || $excluded != 1 ) ) {
-				$this->line( 'SYNCING: (' . $post->ID . ') ' . get_the_title( $post->ID ) );
+			$documents = get_posts( $query_args );
 
-				// If post status is "allowed" and is not excluded, add or update it to index
-				try {
-	                acs_index_document( $post, true );
-				}
-				catch ( Exception $e ) {
-					$message = $e->getMessage();
-					$this->warning( $message->get_text() );
-				}
-			} else {
-				$this->line( 'DELETING: (' . $post->ID . ') ' . get_the_title( $post->ID ) );
+			foreach ( $documents as $post ) {
+				// Read post exclusion field
+				$excluded = get_post_meta( $post->ID, ACS::EXCLUDE_FIELD, true );
 
-				// If post is not allowed or is excluded, delete it from index
-				try {
-					acs_delete_document( $post );
-				}
-				catch ( Exception $e ) {
-					$message = $e->getMessage();
-					$this->warning( $message->get_text() );
+				// Retrieve allowed post statutes to manage
+				$allowed_statuses = apply_filters( 'acs_post_transition_allowed_statuses', array( 'publish' ), $post );
 
+				if ( in_array( $post->post_status, $allowed_statuses ) && ( ! isset( $excluded ) || empty( $excluded ) || $excluded != 1 ) ) {
+					$this->line( 'Syncing: (' . $post->ID . ') ' . $post->post_title );
+
+					// If post status is "allowed" and is not excluded, add or update it to index
+					try {
+		                acs_index_document( $post, true );
+					}
+					catch ( Exception $e ) {
+						$message = $e->getMessage();
+						$this->warning( $message->get_text() );
+					}
+				} else {
+					$this->line( 'Deleting: (' . $post->ID . ') ' . $post->post_title );
+
+					// If post is not allowed or is excluded, delete it from index
+					try {
+						acs_delete_document( $post );
+					}
+					catch ( Exception $e ) {
+						$message = $e->getMessage();
+						$this->warning( $message->get_text() );
+
+					}
 				}
 			}
+
+			$page++;
 		}
 
 		$this->success( count( $documents ) . ' documents(s) synced!' );
