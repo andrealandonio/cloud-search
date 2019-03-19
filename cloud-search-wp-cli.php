@@ -120,8 +120,6 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 		global $wpdb;
 
 		$defaults = array(
-			'post_type'     => 'post',
-			'post_status'   => 'publish',
 			'write_to_file' => 'no',
 		);
 
@@ -165,7 +163,7 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 			// Retrieve allowed post statutes to manage
 			$allowed_statuses = apply_filters( 'acs_post_transition_allowed_statuses', array( 'publish' ), $post );
 
-			if ( in_array( $new_status, $allowed_statuses ) && ( ! isset( $excluded ) || empty( $excluded ) || $excluded != 1 ) ) {
+			if ( in_array( $post->post_status, $allowed_statuses ) && ( ! isset( $excluded ) || empty( $excluded ) || $excluded != 1 ) ) {
 				$this->line( 'SYNCING: (' . $post->ID . ') ' . get_the_title( $post->ID ) );
 
 				// If post status is "allowed" and is not excluded, add or update it to index
