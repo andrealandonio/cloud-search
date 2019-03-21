@@ -43,6 +43,7 @@ require_once( 'cloud-search-utils.php' );
 require_once( 'cloud-search-hooks.php' );
 require_once( 'cloud-search-schema.php' );
 require_once( 'cloud-search-indexer.php' );
+require_once( 'cloud-search-wp-cli.php' );
 
 /**
  * Register activation hook
