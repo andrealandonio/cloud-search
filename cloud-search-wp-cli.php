@@ -112,7 +112,7 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
      *
      * ## EXAMPLES
      *
-     *     wp cloudsearch sync_documents --write_to_file=yes
+     *     wp cloudsearch sync_documents --write_to_file=yes --chunk=5
      *
      * @synopsis
      */
@@ -121,6 +121,7 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 
 		$defaults = array(
 			'write_to_file' => 'no',
+			'chunk' => 1,
 		);
 
 		$assoc_args = wp_parse_args( $assoc_args, $defaults );
@@ -137,7 +138,7 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 		$acs_schema_types = $settings->acs_schema_types;
 		$acs_schema_types = $acs_schema_types ? explode( ACS::SEPARATOR, $acs_schema_types ) : array();
 
-		$page = 1;
+		$chunk = $assoc_args['chunk'];
 
 		$query_args = array(
 			'post_type'      => $acs_schema_types,
@@ -154,18 +155,20 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 			'orderby'        => 'date',
 			'sort'           => 'desc',
 			'posts_per_page' => ACS::SYNC_CHUNK,
-			'paged'          => $page
+			'paged'          => $chunk
 		);
 
 		// Run an intiial query just to get total pages
 		$query = new WP_Query( $query_args );
 		$total_pages = $query->max_num_pages;
+		
+		$count = 0;
 
 		// Iterate through the full results by page/chunk
-		while ( $page <= $total_pages ) {
-			$query_args['paged'] = $page;
+		while ( $chunk <= $total_pages ) {
+			$query_args['paged'] = $chunk;
 
-			$this->line('Starting: Chunk ' . $page );
+			$this->line('Starting: Chunk ' . $chunk );
 
 			$documents = get_posts( $query_args );
 
@@ -200,12 +203,14 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 
 					}
 				}
+				
+				$count++;
 			}
 
-			$page++;
+			$chunk++;
 		}
 
-		$this->success( count( $query->found_posts ) . ' documents(s) synced!' );
+		$this->success( $count . ' documents(s) synced!' );
 	}
 
 	/**
