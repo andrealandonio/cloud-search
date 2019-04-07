@@ -1,39 +1,13 @@
 <?php
-/*
-Plugin Name: CloudSearch
-Description: CloudSearch is a flexible plugin that allows you to leverage the search index power of Amazon CloudSearch in your WordPress site.
-Author: Andrea Landonio
-Author URI: http://www.andrealandonio.it
-Text Domain: cloud-search
-Domain Path: /languages/
-Version: 2.5.0
-License: GPL v3
-
-CloudSearch
-Copyright (C) 2013-2019, Andrea Landonio - landonio.andrea@gmail.com
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 // Security check
 if ( ! defined( 'ABSPATH' ) ) die( 'Direct access to files not allowed' );
 
-if ( ! defined('WP_CLI') || ! WP_CLI ) {
+if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
     return;
 }
 
 class Cloud_Search_WP_CLI extends WP_CLI_Command {
+
 	public $write_to_file = false;
 	public $file = false;
     public $current_method;
@@ -46,41 +20,43 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
      *
      *     wp cloudsearch create_index
      *
+     * @param array $assoc_args An array of the arguments passed to WP CLI for the current function
+     * @param array $defaults An array of arguments defaults
      * @synopsis
      */
-	public function create_index( ) {
+	public function create_index( $assoc_args, $defaults ) {
 		$assoc_args = wp_parse_args( $assoc_args, $defaults );
 
+		// Show feedback
 		$this->start_feedback( __FUNCTION__, $assoc_args );
 
 		try {
 			$result = acs_index_create();
 
-			if ( count( $result->get_data()[ 'fields_with_error' ] ) > 0 && $result->get_data()[ 'fields_managed' ] == 0) {
+			if ( count( $result->get_data()[ 'fields_with_error' ] ) > 0 && $result->get_data()[ 'fields_managed' ] == 0 ) {
 				// Found only error fields
 				$message = new ACS_Message( 'Fields with errors: %s', implode( ACS::SEPARATOR, $result->get_data()[ 'fields_with_error' ] ), ACS_Message::TYPE_ERROR );
-
-				$this->error( $message->get_text() );
-			} elseif ( count( $result->get_data()[ 'fields_with_error' ] ) > 0 && $result->get_data()[ 'fields_managed' ] > 0) {
+				$this->error( $message->get_message() );
+			}
+			elseif ( count( $result->get_data()[ 'fields_with_error' ] ) > 0 && $result->get_data()[ 'fields_managed' ] > 0 ) {
 				// Found error fields but one or more index fields created
 				$message = new ACS_Message( 'Some index fields created/updated correctly, but there are fields with errors: %s', implode( ACS::SEPARATOR, $result->get_data()[ 'fields_with_error' ] ), ACS_Message::TYPE_ERROR );
-
-				$this->error( $message->get_text() );
-			} elseif ( $result->get_data()[ 'fields_managed' ] == 0 ) {
+				$this->error( $message->get_message() );
+			}
+			elseif ( $result->get_data()[ 'fields_managed' ] == 0 ) {
 				// Schema already defined (no new index fields)
 				$message = new ACS_Message( 'No index fields created/updated, all index fields are already defined', '', ACS_Message::TYPE_INFO );
-
-				$this->success( $message->get_text() );
-			} else {
+				$this->success( $message->get_message() );
+			}
+			else {
 				// Schema created
 				$message = new ACS_Message( '%s index fields created/updated', $result->get_data()[ 'fields_managed' ], ACS_Message::TYPE_INFO );
-
-				$this->success( $message->get_text() );
+				$this->success( $message->get_message() );
 			}
-		} catch ( Exception $e ) {
+		}
+		catch ( Exception $e ) {
 			$message = new ACS_Message( '%s', $e->getMessage(), ACS_Message::TYPE_ERROR );
-
-			$this->error( $message->get_text() );
+			$this->error( $message->get_message() );
 		}
 	}
 
@@ -96,14 +72,29 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 	public function run_indexing() {
 		// Run indexing action
 		try {
-			$result = acs_run_indexing();
-			$message = new ACS_Message( 'Run indexing started for %s fields', $result->get_data()[ 'fields_managed' ], ACS_Message::TYPE_INFO );
+			// Check index status
+			$index_status = acs_check_index_status();
 
-			$this->success( $message->get_text() );
-		} catch ( Exception $e ) {
+			if ( ! empty( $index_status ) && $index_status->get_data()[ 'processing' ] == 1 ) {
+				// Another indexing in progress (wait)
+				$message = new ACS_Message( 'Another indexing already in progress', '', ACS_Message::TYPE_ERROR );
+				$this->error( $message->get_message() );
+			}
+			else if ( ! empty( $index_status ) && $index_status->get_data()[ 'requires_index_documents' ] == 0 ) {
+				// Indexing is not required (no action)
+				$message = new ACS_Message( 'No data to be indexed', '', ACS_Message::TYPE_ERROR );
+				$this->error( $message->get_message() );
+			}
+			else {
+				// Run indexing
+				$result = acs_run_indexing();
+				$message = new ACS_Message( "Run indexing started for %s fields", $result->get_data()[ 'fields_managed' ], ACS_Message::TYPE_INFO );
+				$this->success( $message->get_message() );
+			}
+		}
+		catch ( Exception $e ) {
 			$message = new ACS_Message( '%s', $e->getMessage(), ACS_Message::TYPE_ERROR );
-
-			$this->error( $message->get_text() );
+			$this->error( $message->get_message() );
 		}
 	}
 
@@ -114,11 +105,10 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
      *
      *     wp cloudsearch sync_documents --write_to_file=yes --chunk=5
      *
+     * @param array $assoc_args An array of the arguments passed to WP CLI for the current function
      * @synopsis
      */
 	public function sync_documents( $args, $assoc_args ) {
-		global $wpdb;
-
 		$defaults = array(
 			'write_to_file' => 'no',
 			'chunk' => 1,
@@ -130,6 +120,7 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 			$this->write_to_file = true;
 		}
 
+		// Show feedback
 		$this->start_feedback( __FUNCTION__, $assoc_args );
 
 		// Get settings option
@@ -141,8 +132,8 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 		$chunk = $assoc_args['chunk'];
 
 		$query_args = array(
-			'post_type'      => $acs_schema_types,
-			'post_status'    => array(
+			'post_type' => $acs_schema_types,
+			'post_status' => array(
 				'publish',
 				'pending',
 				'draft',
@@ -152,13 +143,13 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 				'inherit',
 				'trash',
 			),
-			'orderby'        => 'date',
-			'sort'           => 'desc',
+			'orderby' => 'date',
+			'sort' => 'desc',
 			'posts_per_page' => ACS::SYNC_CHUNK,
-			'paged'          => $chunk
+			'paged' => $chunk
 		);
 
-		// Run an intiial query just to get total pages
+		// Run an initial query just to get total pages
 		$query = new WP_Query( $query_args );
 		$total_pages = $query->max_num_pages;
 		
@@ -188,9 +179,10 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 					}
 					catch ( Exception $e ) {
 						$message = $e->getMessage();
-						$this->warning( $message->get_text() );
+						$this->warning( $message );
 					}
-				} else {
+				}
+				else {
 					$this->line( 'Deleting: (' . $post->ID . ') ' . $post->post_title );
 
 					// If post is not allowed or is excluded, delete it from index
@@ -199,7 +191,7 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 					}
 					catch ( Exception $e ) {
 						$message = $e->getMessage();
-						$this->warning( $message->get_text() );
+						$this->warning( $message );
 
 					}
 				}
@@ -216,12 +208,12 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 	/**
 	 * Starts output and sets some class vars for use in logging
 	 *
-	 * @param string The name of the current function being run
-	 * @param array An array of the arguments passed to WP CLI for the current fucntion
+	 * @param string $function The name of the current function being run
+	 * @param array $assoc_args An array of the arguments passed to WP CLI for the current function
 	 */
 	public function start_feedback( $function, $assoc_args ) {
 		$this->current_method = $function;
-		$this->current_command = 'wp go_ossein ' . $this->current_method;
+		$this->current_command = 'wp ' . $this->current_method;
 
 		foreach ( $assoc_args as $key => $value ) {
 			$this->current_command .= ' --' . $key . '=' . $value;
@@ -233,14 +225,15 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 	/**
 	 * Writes a line to output or a log file
 	 *
-	 * @param string Some text you want written
+	 * @param string $message
 	 */
 	public function line( $message ) {
 		if ( $this->write_to_file ) {
 			$this->open_file();
 			$this->output .= $message . "\n";
 			fwrite( $this->file, $message . "\n" );
-		} else {
+		}
+		else {
 			WP_CLI::line( $message );
 		}
 	}
@@ -248,14 +241,15 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 	/**
 	 * Writes a warning line to output or a log file
 	 *
-	 * @param string Some text you want written
+	 * @param string $message
 	 */
 	public function warning( $message ) {
 		if ( $this->write_to_file ) {
 			$this->open_file();
 			$this->output .= 'Warning: ' . $message . "\n";
 			fwrite( $this->file, 'Warning: ' . $message . "\n" );
-		} else {
+		}
+		else {
 			WP_CLI::warning( $message );
 		}
 	}
@@ -263,7 +257,7 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 	/**
 	 * Writes a success line to output or a log file
 	 *
-	 * @param string Some text you want written
+	 * @param string $message
 	 */
 	public function success( $message ) {
 		if ( $this->write_to_file ) {
@@ -271,13 +265,16 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 			$this->output .= 'Success: ' . $message . "\n";
 			fwrite( $this->file, 'Success: ' . $message . "\n" );
 			fclose( $this->file );
-		} else {
+		}
+		else {
 			WP_CLI::success( $message );
 		}
 	}
 
 	/**
-	 * Writes an error line to output or a log file AND stops the script
+	 * Writes an error line to output or a log file and stops the script
+	 *
+	 * @param string $message
 	 */
 	public function error( $message ) {
 		if ( $this->write_to_file ) {
@@ -286,7 +283,8 @@ class Cloud_Search_WP_CLI extends WP_CLI_Command {
 			fwrite( $this->file, 'Error: ' . $message . "\n" );
 			fclose( $this->file );
 			die;
-		} else {
+		}
+		else {
 			WP_CLI::error( $message );
 		}
 	}

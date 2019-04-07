@@ -249,7 +249,7 @@ function acs_run_indexing() {
     // Prepare result object
     $acs_result = new ACS_Result();
     $acs_result->set_data( array(
-        'fields_managed' => count( $result->getPath( 'FieldNames' ) ),
+        'fields_managed' => ( ! empty( $result->getPath( 'FieldNames' ) ) ) ? count( $result->getPath( 'FieldNames' ) ) : 0,
         'fields_with_error' => 0
     ) );
 

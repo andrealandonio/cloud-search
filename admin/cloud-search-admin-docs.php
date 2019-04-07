@@ -19,7 +19,8 @@ function acs_menu_page_docs() {
         'query' => __( 'Querying the index', ACS::PREFIX ),
         'facets' => __( 'Facets', ACS::PREFIX ),
         'utilities' => __( 'Utilities', ACS::PREFIX ),
-        'filters' => __( 'Filters', ACS::PREFIX )
+        'filters' => __( 'Filters', ACS::PREFIX ),
+        'cli' => __( 'CLI', ACS::PREFIX ) . '&nbsp;' . '<span class="dashicons dashicons-laptop"></span>'
     );
     ?>
     <div class="wrap">
@@ -49,6 +50,26 @@ function acs_menu_page_docs() {
                 else $tab = 'general';
 
                 switch ( $tab ) {
+	                case 'cli' :
+		                ?>
+                        <div class="acs_docs_content">
+                            <h4><?php _e( 'Overview', ACS::PREFIX ) ?></h4>
+                            <p><?php _e( 'The plugin adds some basic WP CLI commands. to the user a set of APIs with which you can check the status of the index, verify the number of indexed documents and query the index to search for items. You can get the API result in two formats: JSON and XML. The default one is JSON, but simply adding a "format" parameter in the API url you can switch the result output. Below we analyze every single API.', ACS::PREFIX ) ?></p>
+
+                            <span>wp cloudsearch create_index</span>
+                            <p><?php _e( 'Todo', ACS::PREFIX ) ?></p>
+
+                            <span>wp cloudsearch run_indexing</span>
+                            <p><?php _e( 'Todo', ACS::PREFIX ) ?></p>
+
+                            <span>wp cloudsearch sync_documents</span>
+                            <p><?php _e( 'Todo', ACS::PREFIX ) ?></p>
+
+                            <span>wp cloudsearch delete_documents</span>
+                            <p><?php _e( 'Todo', ACS::PREFIX ) ?></p>
+                        </div>
+		                <?php
+		                break;
 	                case 'filters' :
 		                ?>
                         <div class="acs_docs_content">

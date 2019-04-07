@@ -192,12 +192,39 @@ function acs_index_status() {
         echo $acs_result->format_response();
         die();
     }
+	else {
+		// Check index status
+		$acs_result = acs_check_index_status();
+	}
 
-    // Get client
-    $client = acs_get_client();
+    // Return result object
+    echo $acs_result->format_response();
 
-    // Get settings option
-    $settings = ACS::get_instance()->get_settings();
+    die();
+}
+add_action( 'wp_ajax_acs_index_status', 'acs_index_status' );
+
+/**
+ * Get index status for guest users
+ */
+function nopriv_acs_index_status() {
+    die();
+}
+add_action( 'wp_ajax_nopriv_acs_index_status', 'nopriv_acs_index_status' );
+
+/**
+ * Check index status
+ *
+ * @return ACS_Result
+ */
+function acs_check_index_status() {
+	$acs_result = new ACS_Result();
+
+	// Get client
+	$client = acs_get_client();
+
+	// Get settings option
+	$settings = ACS::get_instance()->get_settings();
 
 	// Gets information about the search domains
 	$status_requires_index_documents = false;
@@ -232,17 +259,6 @@ function acs_index_status() {
 		) );
 	}
 
-    // Return result object
-    echo $acs_result->format_response();
-
-    die();
+	// Return result object
+	return $acs_result;
 }
-add_action( 'wp_ajax_acs_index_status', 'acs_index_status' );
-
-/**
- * Get index status for guest users
- */
-function nopriv_acs_index_status() {
-    die();
-}
-add_action( 'wp_ajax_nopriv_acs_index_status', 'nopriv_acs_index_status' );
