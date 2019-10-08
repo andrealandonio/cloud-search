@@ -19,8 +19,8 @@ function acs_menu_page_docs() {
         'query' => __( 'Querying the index', ACS::PREFIX ),
         'facets' => __( 'Facets', ACS::PREFIX ),
         'utilities' => __( 'Utilities', ACS::PREFIX ),
-        'filters' => __( 'Filters', ACS::PREFIX ),
-        'cli' => __( 'CLI', ACS::PREFIX ) . '&nbsp;' . '<span class="dashicons dashicons-laptop"></span>'
+        'filters' => __( 'Filters', ACS::PREFIX )//,
+        //'cli' => __( 'CLI', ACS::PREFIX ) . '&nbsp;' . '<span class="dashicons dashicons-laptop"></span>'
     );
     ?>
     <div class="wrap">
@@ -54,19 +54,20 @@ function acs_menu_page_docs() {
 		                ?>
                         <div class="acs_docs_content">
                             <h4><?php _e( 'Overview', ACS::PREFIX ) ?></h4>
-                            <p><?php _e( 'The plugin adds some basic WP CLI commands. to the user a set of APIs with which you can check the status of the index, verify the number of indexed documents and query the index to search for items. You can get the API result in two formats: JSON and XML. The default one is JSON, but simply adding a "format" parameter in the API url you can switch the result output. Below we analyze every single API.', ACS::PREFIX ) ?></p>
+                            <p><?php _e( 'The plugin adds some basic WP CLI commands. The main advantage of the CLI is that you can run a query/sync/index without any AWS execution time limits that you could find using the admin pages.', ACS::PREFIX ) ?></p>
+                            <p><?php _e( 'Here you can find a list of available commands:', ACS::PREFIX ) ?></p>
 
                             <span>wp cloudsearch create_index</span>
-                            <p><?php _e( 'Todo', ACS::PREFIX ) ?></p>
+                            <p><?php _e( 'Perform a create/update index operation', ACS::PREFIX ) ?></p>
 
                             <span>wp cloudsearch run_indexing</span>
-                            <p><?php _e( 'Todo', ACS::PREFIX ) ?></p>
+                            <p><?php _e( 'Perform an indexing operation (works only if no other index process are running and if an indexing is really needed)', ACS::PREFIX ) ?></p>
 
                             <span>wp cloudsearch sync_documents</span>
-                            <p><?php _e( 'Todo', ACS::PREFIX ) ?></p>
+                            <p><?php _e( 'Perform a documents sync operation', ACS::PREFIX ) ?></p>
 
                             <span>wp cloudsearch delete_documents</span>
-                            <p><?php _e( 'Todo', ACS::PREFIX ) ?></p>
+                            <p><?php _e( 'Perform a documents delete operation', ACS::PREFIX ) ?></p>
                         </div>
 		                <?php
 		                break;

@@ -651,39 +651,7 @@ function acs_get_document_key( $post_id, $suffix = '' ) {
  * @return string
  */
 function acs_get_filter_query( $global_search = false, $type_field = ACS::TYPE_FIELD_DEFAULT, $filter_query = '', $filter_terms = true ) {
-	// Add term filters
-	if ( $filter_terms ) {
-		// Get settings option
-		$settings = ACS::get_instance()->get_settings();
-
-		// Get all taxonomies (by default, we need to remove all from index)
-		$site_taxonomy_types = acs_get_all_site_taxonomies();
-
-		// Get schema searchable taxonomies
-		$acs_schema_searchable_taxonomies = $settings->acs_schema_searchable_taxonomies;
-		$acs_schema_searchable_taxonomies = $acs_schema_searchable_taxonomies ? explode( ACS::SEPARATOR, $acs_schema_searchable_taxonomies ) : array();
-
-		// Loop site taxonomies
-		if ( ! empty( $site_taxonomy_types ) ) {
-			// Get schema taxonomies
-			$acs_schema_taxonomies = $settings->acs_schema_taxonomies;
-			$acs_schema_taxonomies = $acs_schema_taxonomies ? explode( ACS::SEPARATOR, $acs_schema_taxonomies ) : array();
-
-			foreach ( $site_taxonomy_types as $site_taxonomy_type ) {
-				// Check if terms is not synced and not searchable, then remove from search
-				if ( ! in_array( $site_taxonomy_type, $acs_schema_taxonomies ) || ! in_array( $site_taxonomy_type, $acs_schema_searchable_taxonomies ) ) {
-					$filter_query = $filter_query . ' (not post_type:\'' . $site_taxonomy_type . '\')';
-				}
-			}
-		}
-
-		// Manage default term "category"
-		if ( ! in_array( 'category', $acs_schema_searchable_taxonomies ) ) {
-			$filter_query = $filter_query . ' (not post_type:\'category\')';
-		}
-    }
-
-	// Get settings option
+    // Get settings option
 	$settings = ACS::get_instance()->get_settings();
 
 	// Get all taxonomies (by default, we need to remove all from index)
@@ -693,6 +661,12 @@ function acs_get_filter_query( $global_search = false, $type_field = ACS::TYPE_F
 	$acs_schema_searchable_taxonomies = $settings->acs_schema_searchable_taxonomies;
 	$acs_schema_searchable_taxonomies = $acs_schema_searchable_taxonomies ? explode( ACS::SEPARATOR, $acs_schema_searchable_taxonomies ) : array();
 
+	// Prepare default filter query prefix adding schema types
+	$filter_query = $filter_query . ' (or ';
+	foreach ( explode( ',', $settings->acs_schema_types ) as $type ) {
+		$filter_query .= ' post_type:\'' . $type . '\'';
+	}
+
 	// Loop site taxonomies
     if ( ! empty( $site_taxonomy_types ) ) {
 	    // Get schema taxonomies
@@ -700,17 +674,20 @@ function acs_get_filter_query( $global_search = false, $type_field = ACS::TYPE_F
 	    $acs_schema_taxonomies = $acs_schema_taxonomies ? explode( ACS::SEPARATOR, $acs_schema_taxonomies ) : array();
 
 	    foreach ( $site_taxonomy_types as $site_taxonomy_type ) {
-		    // Check if terms is not synced and not searchable, then remove from search
-		    if ( ! in_array( $site_taxonomy_type, $acs_schema_taxonomies ) || ! in_array( $site_taxonomy_type, $acs_schema_searchable_taxonomies ) ) {
-			    $filter_query = $filter_query . ' (not post_type:\'' . $site_taxonomy_type . '\')';
+		    // Check if terms is synced and searchable, then add it to search
+		    if ( in_array( $site_taxonomy_type, $acs_schema_taxonomies ) && in_array( $site_taxonomy_type, $acs_schema_searchable_taxonomies ) ) {
+			    $filter_query = $filter_query . ' post_type:\'' . $site_taxonomy_type . '\'';
 		    }
 	    }
     }
 
 	// Manage default term "category"
-	if ( ! in_array( 'category', $acs_schema_searchable_taxonomies ) ) {
-		$filter_query = $filter_query . ' (not post_type:\'category\')';
+	if ( in_array( 'category', $acs_schema_searchable_taxonomies ) ) {
+		$filter_query = $filter_query . ' post_type:\'category\'';
 	}
+
+	// Prepare default filter query suffix
+    $filter_query = $filter_query . ')';
 
     if ( $type_field != 'all' ) {
         // Query field type items
