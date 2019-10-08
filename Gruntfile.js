@@ -185,7 +185,7 @@ module.exports = function (grunt) {
 	/**
 	* BUILD GIT README FILE AND MAYBE SOME SASS LATER?
 	*/
-	grunt.registerTask( 'default', [
+	grunt.registerTask('default', [
 		'wp_readme_to_markdown' 
 	]);
 	

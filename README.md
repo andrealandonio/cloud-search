@@ -2,8 +2,8 @@
 **Contributors:** [lando1982](https://profiles.wordpress.org/lando1982), [sburdett](https://profiles.wordpress.org/sburdett), [methnen](https://profiles.wordpress.org/methnen)  
 **Tags:** aws, amazon, cloud, search, research, CloudSearch, cs, suggest, facet  
 **Requires at least:** 4.4  
-**Tested up to:** 5.1  
-**Stable tag:** 2.5.1  
+**Tested up to:** 5.2  
+**Stable tag:** 2.5.2  
 **License:** GPLv3  
 **License URI:** http://www.gnu.org/licenses/gpl.html  
 
@@ -101,6 +101,9 @@ Yes, you can manage WooCommerce product tags and EDD tags simply adding a little
 
 
 ## Changelog ##
+
+### 2.5.2 - 2019-10-08 ###
+* Changed "filter_query" clauses from exclusive to inclusive
 
 ### 2.5.1 - 2019-03-05 ###
 * Added "acs_post_transition_allowed_statuses" filter hook
