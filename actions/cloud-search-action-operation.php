@@ -204,9 +204,11 @@ function acs_index_documents_sync( $key = 0, $key_type = ACS::SEARCH_KEY_TYPE_DE
 		            $prepared_doc_array = acs_prepare_document( $item );
 		            if ( ! empty( $prepared_doc_array ) ) {
 			            $docs[] = $prepared_doc_array;
-			            $count = $count + 1;
 		            }
 	            }
+
+	            // Increase counter anyway (also for excluded items)
+	            $count = $count + 1;
             }
         }
 
