@@ -2,8 +2,8 @@
 **Contributors:** [lando1982](https://profiles.wordpress.org/lando1982), [sburdett](https://profiles.wordpress.org/sburdett), [methnen](https://profiles.wordpress.org/methnen)  
 **Tags:** aws, amazon, cloud, search, research, CloudSearch, cs, suggest, facet  
 **Requires at least:** 4.4  
-**Tested up to:** 5.2  
-**Stable tag:** 2.6.0  
+**Tested up to:** 5.3  
+**Stable tag:** 2.6.1  
 **License:** GPLv3  
 **License URI:** http://www.gnu.org/licenses/gpl.html  
 
@@ -101,6 +101,9 @@ Yes, you can manage WooCommerce product tags and EDD tags simply adding a little
 
 
 ## Changelog ##
+
+### 2.6.1 - 2019-11-17 ###
+* Added support for twentytwenty theme
 
 ### 2.6.0 - 2019-10-17 ###
 * Fixed bug with sync all documents and acs_exclude filter

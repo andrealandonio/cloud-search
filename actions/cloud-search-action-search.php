@@ -164,6 +164,10 @@ function acs_perform_search_documents( $search_templates_directory, $global_sear
 						// Use optimized "twentynineteen" template
 						load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentynineteen.php', false );
 					}
+					elseif ( $current_theme == 'Twenty Twenty' ) {
+						// Use optimized "twentytwenty" template
+						load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentytwenty.php', false );
+					}
 					else {
 						// Use default template
 						load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-default.php', false );
