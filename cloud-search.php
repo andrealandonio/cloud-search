@@ -6,7 +6,7 @@ Author: Andrea Landonio
 Author URI: http://www.andrealandonio.it
 Text Domain: cloud-search
 Domain Path: /languages/
-Version: 2.6.1
+Version: 2.7.0
 License: GPL v3
 
 CloudSearch
@@ -101,6 +101,7 @@ function acs_activation() {
 		$settings->acs_schema_fields_image_size = '';
 		$settings->acs_schema_fields_custom_image_id = '';
 		$settings->acs_schema_fields_invalid_chars = '';
+		$settings->acs_schema_fields_legacy_types = '';
 		$settings->acs_schema_prevent_deletion = 0;
 		$settings->acs_network_site_id = '';
 		$settings->acs_network_blog_id = '';

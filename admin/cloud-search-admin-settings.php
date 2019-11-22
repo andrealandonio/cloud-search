@@ -634,6 +634,15 @@ function acs_menu_page_settings() {
 						</td>
 					</tr>
                     <tr valign="top">
+                        <th scope="row"><label for="acs_schema_fields_legacy_types"><?php _e( 'List of legacy post types to be included in searches', ACS::PREFIX ) ?></label></th>
+                        <td>
+                            <input type="text" id="acs_schema_fields_legacy_types" name="acs_schema_fields_legacy_types" value="<?php echo $settings->acs_schema_fields_legacy_types ?>" class="big" />
+                            <div class="acs_row_tips">
+                                <span><?php _e( 'Enter comma separated list of types if you want to include some legacy post types in searches.', ACS::PREFIX ) ?></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr valign="top">
                         <th scope="row"><label for="acs_hide_section_help"><?php _e( 'Hide "Help" section from menu', ACS::PREFIX ) ?></label></th>
                         <td>
                             <input type="checkbox" id="acs_hide_section_help" name="acs_hide_section_help" value="1" <?php echo ( $settings->acs_hide_section_help == 1 ) ? 'checked="checked"' : '' ?> />&nbsp;
@@ -733,7 +742,8 @@ function acs_manage_menu_page_settings_actions() {
 				$settings->acs_schema_fields_image_size = ( !empty( $_POST[ 'acs_schema_fields_image_size' ] ) ) ? wp_kses_post( $_POST[ 'acs_schema_fields_image_size' ] ) : '';
 				$settings->acs_schema_fields_custom_image_id = ( !empty( $_POST[ 'acs_schema_fields_custom_image_id' ] ) ) ? wp_kses_post( $_POST[ 'acs_schema_fields_custom_image_id' ] ) : '';
 				$settings->acs_schema_fields_invalid_chars = ( !empty( $_POST[ 'acs_schema_fields_invalid_chars' ] ) ) ? stripslashes( $_POST[ 'acs_schema_fields_invalid_chars' ] ) : '';
-                $settings->acs_schema_prevent_deletion =  ( !empty( $_POST[ 'acs_schema_prevent_deletion' ] ) ) ? 1 : 0;
+				$settings->acs_schema_fields_legacy_types = ( !empty( $_POST[ 'acs_schema_fields_legacy_types' ] ) ) ? stripslashes( $_POST[ 'acs_schema_fields_legacy_types' ] ) : '';
+				$settings->acs_schema_prevent_deletion =  ( !empty( $_POST[ 'acs_schema_prevent_deletion' ] ) ) ? 1 : 0;
 				$settings->acs_network_site_id = ( !empty( $_POST[ 'acs_network_site_id' ] ) ) ? wp_kses_post( $_POST[ 'acs_network_site_id' ] ) : '';
 				$settings->acs_network_blog_id = ( !empty( $_POST[ 'acs_network_blog_id' ] ) ) ? wp_kses_post( $_POST[ 'acs_network_blog_id' ] ) : '';
 				$settings->acs_highlight_type = ( !empty( $_POST[ 'acs_highlight_type' ] ) ) ? wp_kses_post( $_POST[ 'acs_highlight_type' ] ) : ACS::HIGHLIGHT_TYPE_DEFAULT;

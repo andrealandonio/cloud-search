@@ -661,8 +661,15 @@ function acs_get_filter_query( $global_search = false, $type_field = ACS::TYPE_F
 	$acs_schema_searchable_taxonomies = $settings->acs_schema_searchable_taxonomies;
 	$acs_schema_searchable_taxonomies = $acs_schema_searchable_taxonomies ? explode( ACS::SEPARATOR, $acs_schema_searchable_taxonomies ) : array();
 
-	// Prepare default filter query prefix adding schema types
+	// Get legacy post types
+	$acs_schema_fields_legacy_types = $settings->acs_schema_fields_legacy_types;
+	$acs_schema_fields_legacy_types = $acs_schema_fields_legacy_types ? explode( ACS::SEPARATOR, $acs_schema_fields_legacy_types ) : array();
+
+	// Prepare default filter query prefix adding schema types and legacy post types (if provided)
 	$filter_query = $filter_query . ' (or ';
+	foreach ( $acs_schema_fields_legacy_types as $legacy_type ) {
+		$filter_query .= ' post_type:\'' . $legacy_type . '\'';
+	}
 	foreach ( explode( ',', $settings->acs_schema_types ) as $type ) {
 		$filter_query .= ' post_type:\'' . $type . '\'';
 	}
