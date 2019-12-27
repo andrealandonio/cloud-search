@@ -1,9 +1,9 @@
 === CloudSearch ===
-Contributors: lando1982, sburdett, methnen
+Contributors: lando1982, sburdett, methnen, bheadrick
 Tags: aws, amazon, cloud, search, research, CloudSearch, cs, suggest, facet
 Requires at least: 4.4
 Tested up to: 5.3
-Stable tag: 2.7.0
+Stable tag: 2.8.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -91,6 +91,9 @@ Yes, you can manage WooCommerce product tags and EDD tags simply adding a little
 5. Other settings (suggestions)
 
 == Changelog ==
+
+= 2.8.0 - 2019-12-27 =
+* Added REST API route for suggestion service
 
 = 2.7.0 - 2019-11-22 =
 * Manage settings for adding a filter post type for "legacy" items

@@ -3,52 +3,79 @@
  * Suggest AJAX callback
  */
 function wp_ajax_acs_suggest_callback() {
-    // Read prompted keyword
-    $keyword = sanitize_text_field( $_GET[ 'keyword' ] );
+	// Read prompted keyword
+	$keyword = sanitize_text_field( $_GET[ 'keyword' ] );
+	list( $settings, $results ) = acs_retrieve_suggestions( $keyword );
 
-    // Get settings option
-    $settings = ACS::get_instance()->get_settings();
+	// Return suggest result
+	echo json_encode(
+		array(
+			'results' => array_slice( $results, 0, $settings->acs_suggest_results )
+		)
+	);
 
-    // Set default search values
-    $start = 0;
-    $size = $settings->acs_suggest_results;
-    $filter_query = '';
+	// Resets
+	wp_reset_postdata();
+	wp_reset_query();
 
-    try {
-        // Search data
-        $acs_result = acs_index_documents_suggest( $keyword, $start, $size, ACS::QUERY_PARSER, $filter_query );
-        $result_search = $acs_result->get_data();
+	die();
+}
 
-        //TODO: add loading message
-    }
-    catch ( Exception $e ) {
-        $result_search = array();
-    }
+/**
+ * Retrieve suggestions
+ *
+ * @param string $keyword
+ *
+ * @return array
+ */
+function acs_retrieve_suggestions( $keyword ) {
+	// Get settings option
+	$settings = ACS::get_instance()->get_settings();
 
-    $results = array();
-    if ( ! empty( $result_search ) && $result_search[ 'found' ] > 0 && count( $result_search[ 'items' ] ) > 0 ) {
-        // Documents founded
-        foreach ( $result_search[ 'items' ] as $post_item ) {
-            // Add post ID to result array
-            $results[] = array(
-                'title' => html_entity_decode( $post_item[ 'title' ] ),
-                'url' => $post_item[ 'url' ]
-            );
-        }
-    }
+	// Set default search values
+	$start = 0;
+	$size = $settings->acs_suggest_results;
+	$filter_query = '';
 
-    // Return suggest result
-    echo json_encode(
-        array(
-            'results' => array_slice( $results, 0, $settings->acs_suggest_results )
-        )
-    );
+	try {
+		// Search data
+		$acs_result = acs_index_documents_suggest( $keyword, $start, $size, ACS::QUERY_PARSER, $filter_query );
+		$result_search = $acs_result->get_data();
 
-    // Resets
-    wp_reset_postdata();
-    wp_reset_query();
+		//TODO: add loading message
+	}
+	catch ( Exception $e ) {
+		$result_search = array();
+	}
 
-    die();
+	$results = array();
+	if ( ! empty( $result_search ) && $result_search[ 'found' ] > 0 && count( $result_search[ 'items' ] ) > 0 ) {
+		// Documents founded
+		foreach ( $result_search[ 'items' ] as $post_item ) {
+			// Add post ID to result array
+			$results[] = array(
+				'title' => html_entity_decode( $post_item[ 'title' ] ),
+				'url' => $post_item[ 'url' ]
+			);
+		}
+	}
+
+	return array( $settings, $results );
+}
+
+/**
+ * Get suggestions route
+ *
+ * @param WP_REST_Request $request
+ *
+ * @return array
+ */
+function acs_route_get_suggestions( $request ) {
+	$keyword = $request->get_param( 'k' );
+	list( $settings, $results ) = acs_retrieve_suggestions( $keyword );
+	return array(
+		'results' => array_slice( $results, 0, $settings->acs_suggest_results )
+	);
 }
 
 /**

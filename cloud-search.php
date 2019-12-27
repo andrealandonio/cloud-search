@@ -6,7 +6,7 @@ Author: Andrea Landonio
 Author URI: http://www.andrealandonio.it
 Text Domain: cloud-search
 Domain Path: /languages/
-Version: 2.7.0
+Version: 2.8.0
 License: GPL v3
 
 CloudSearch
@@ -223,10 +223,14 @@ function acs_init() {
     // Get settings option
     $settings = ACS::get_instance()->get_settings();
 
-    // If suggest is enabled add AJAX callbacks
+    // If suggest is enabled add AJAX (via admin-ajax.php) and REST API callbacks
     if ( $settings->acs_suggest_active ) {
+    	// Admin AJAX
         add_action( 'wp_ajax_acs_suggest_callback', 'wp_ajax_acs_suggest_callback' );
         add_action( 'wp_ajax_nopriv_acs_suggest_callback', 'wp_ajax_acs_suggest_callback' );
+
+        // REST API
+	    add_action( 'rest_api_init', 'acs_register_routes_hooks' );
     }
 }
 add_action( 'init', 'acs_init' );

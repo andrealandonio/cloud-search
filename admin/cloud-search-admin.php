@@ -96,7 +96,8 @@ function acs_custom_styles_and_scripts() {
             'acs_script_suggest',
             'acs_config_suggest',
             array(
-                'ajax_url' => admin_url( 'admin-ajax.php' ),
+                //'ajax_url' => admin_url( 'admin-ajax.php' ),
+	            'ajax_url' => esc_url_raw( get_rest_url() . ACS::API_NAMESPACE . '/v' . ACS::API_VERSION . '/suggest' ),
                 'acs_suggest_selector' => stripslashes( $settings->acs_suggest_selector ),
                 'acs_suggest_trigger' => $settings->acs_suggest_trigger,
                 'acs_suggest_results' => $settings->acs_suggest_results,

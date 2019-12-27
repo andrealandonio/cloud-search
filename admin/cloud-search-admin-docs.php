@@ -354,6 +354,9 @@ function acs_menu_page_docs() {
                             <span>/wp-admin/admin-ajax.php?action=acs_api_index_status</span>
                             <p><?php _e( 'This service provides to you the index status. Especially if the index requires an indexing or if a sync/indexing operation is in progress.', ACS::PREFIX ) ?></p>
 
+                            <span>/wp-json/cloud-search/v1/suggest?keyword=test</span>
+                            <p><?php _e( 'This service provides to you a list of suggested items, retrieved from the provided input keyword. This API is also used for the suggestion feature in the templates.', ACS::PREFIX ) ?></p>
+
                             <h4><?php _e( 'How to write your custom script', ACS::PREFIX ) ?></h4>
                             <p><?php _e( 'The built-in search page uses jQuery to initialize search engine. As you can see in the following code, the page provides some values to a ACS init function that manages the bootstrap and manages every search and pagination features. The "init" function parameters are: "keyword", "start and "size" already explained in the "acs_api_search" API, "type_field", "sort_field" and "sort_order" that represent the filter element IDs and "container_result_items", "container_ajax_loader" and "container_load_more" that represent the element IDs where you want to put the result items, the page loader and the load more message.', ACS::PREFIX ) ?></p>
 
@@ -591,6 +594,8 @@ function acs_menu_page_docs() {
                                 <li>Twenty Fifteen</li>
                                 <li>Twenty Sixteen</li>
                                 <li>Twenty Seventeen</li>
+                                <li>Twenty Nineteen</li>
+                                <li>Twenty Twenty</li>
                             </ul>
 
                             <h4><?php _e( 'More about item image size and custom item image ID fields', ACS::PREFIX ) ?></h4>
