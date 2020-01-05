@@ -192,7 +192,7 @@ function acs_menu_page_settings() {
                         <th scope="row" colspan="6">
                             <h5><?php _e( 'Custom fields management', ACS::PREFIX ) ?></h5>
 	                        <p>
-                                <?php _e( 'You have the opportunity to mark as sortable some custom fields. In this sub-section you have to configure your custom fields forcing their type, if int, double or literal, and defining which fields should be defined as "Sortable" in CloudSearch (by default custom fields are created as text not sortable). This operation is important because text fields don\'t always sort well. For this reason, you have to provide a comma separated list of custom fields (especially if the original values are integers or double).', ACS::PREFIX ) ?><br />
+                                <?php _e( 'You have the opportunity to mark as sortable some custom fields. In this sub-section you have to configure your custom fields forcing their type, if int, double, date or literal, and defining which fields should be defined as "Sortable" in CloudSearch (by default custom fields are created as text not sortable). This operation is important because text fields don\'t always sort well. For this reason, you have to provide a comma separated list of custom fields (especially if the original values are integers, doubles or dates).', ACS::PREFIX ) ?><br />
 		                        <?php _e( 'This management works also if the fields have not been already created, but remember to perform an update index after any change.', ACS::PREFIX ) ?>
                             </p>
                         </th>
@@ -212,6 +212,15 @@ function acs_menu_page_settings() {
                             <input type="text" id="acs_schema_fields_double" name="acs_schema_fields_double" value="<?php echo $settings->acs_schema_fields_double ?>" class="max" />
                             <div class="acs_row_tips">
                                 <span><?php _e( 'Enter comma separated list of fields to be converted to "double" in CloudSearch.', ACS::PREFIX ) ?></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row"><label for="acs_schema_fields_date"><?php _e( 'Date fields', ACS::PREFIX ) ?></label></th>
+                        <td>
+                            <input type="text" id="acs_schema_fields_date" name="acs_schema_fields_date" value="<?php echo $settings->acs_schema_fields_date ?>" class="max" />
+                            <div class="acs_row_tips">
+                                <span><?php _e( 'Enter comma separated list of fields to be converted to "date" in CloudSearch.', ACS::PREFIX ) ?></span>
                             </div>
                         </td>
                     </tr>
@@ -735,6 +744,7 @@ function acs_manage_menu_page_settings_actions() {
                 $settings->acs_filter_text_length_type = ( !empty( $_POST[ 'acs_filter_text_length_type' ] ) ) ? wp_kses_post( $_POST[ 'acs_filter_text_length_type' ] ) : ACS::SEARCH_TEXT_LENGTH_TYPE;
 				$settings->acs_schema_fields_int = ( !empty( $_POST[ 'acs_schema_fields_int' ] ) ) ? wp_kses_post( $_POST[ 'acs_schema_fields_int' ] ) : '';
                 $settings->acs_schema_fields_double = ( !empty( $_POST[ 'acs_schema_fields_double' ] ) ) ? wp_kses_post( $_POST[ 'acs_schema_fields_double' ] ) : '';
+				$settings->acs_schema_fields_date = ( !empty( $_POST[ 'acs_schema_fields_date' ] ) ) ? wp_kses_post( $_POST[ 'acs_schema_fields_date' ] ) : '';
 				$settings->acs_schema_fields_literal = ( !empty( $_POST[ 'acs_schema_fields_literal' ] ) ) ? wp_kses_post( $_POST[ 'acs_schema_fields_literal' ] ) : '';
                 $settings->acs_schema_fields_sortable = ( !empty( $_POST[ 'acs_schema_fields_sortable' ] ) ) ? wp_kses_post( $_POST[ 'acs_schema_fields_sortable' ] ) : '';
                 $settings->acs_schema_fields_prefix = ( !empty( $_POST[ 'acs_schema_fields_prefix' ] ) ) ? wp_kses_post( $_POST[ 'acs_schema_fields_prefix' ] ) : '';

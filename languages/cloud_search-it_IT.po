@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Amazon CloudSearch\n"
-"POT-Creation-Date: 2019-11-22 14:28+0100\n"
-"PO-Revision-Date: 2019-11-22 14:28+0100\n"
+"POT-Creation-Date: 2020-01-05 19:13+0100\n"
+"PO-Revision-Date: 2020-01-05 19:14+0100\n"
 "Last-Translator: Andrea Landonio <landonio.andrea@gmail.com>\n"
 "Language-Team: Andrea Landonio <landonio.andrea@gmail.com>\n"
 "Language: it_IT\n"
@@ -25,12 +25,12 @@ msgid "Please upload a file to import"
 msgstr "Carica un file da importare"
 
 #: actions/cloud-search-action-import.php:81
-#: admin/cloud-search-admin-settings.php:727 cloud-search.php:86
+#: admin/cloud-search-admin-settings.php:736 cloud-search.php:86
 msgid "No results"
 msgstr "Nessun risultato"
 
 #: actions/cloud-search-action-import.php:83
-#: admin/cloud-search-admin-settings.php:729 cloud-search.php:87
+#: admin/cloud-search-admin-settings.php:738 cloud-search.php:87
 msgid "Load more"
 msgstr "Carica altri"
 
@@ -78,7 +78,7 @@ msgstr ""
 
 #: admin/cloud-search-admin-docs.php:56 admin/cloud-search-admin-docs.php:164
 #: admin/cloud-search-admin-docs.php:280 admin/cloud-search-admin-docs.php:332
-#: admin/cloud-search-admin-docs.php:464
+#: admin/cloud-search-admin-docs.php:467
 msgid "Overview"
 msgstr "Panoramica"
 
@@ -612,11 +612,21 @@ msgstr ""
 "richiede una indicizzazione o se una operazione di sincronizzazione / "
 "indicizzazione è in corso."
 
-#: admin/cloud-search-admin-docs.php:357
+#: admin/cloud-search-admin-docs.php:358
+msgid ""
+"This service provides to you a list of suggested items, retrieved from the "
+"provided input keyword. This API is also used for the suggestion feature in "
+"the templates."
+msgstr ""
+"Questo servizio suggerisce un elenco di items, recuperati tramite la parola "
+"chiave fornita in input. Questa API viene utilizzata anche per la funzione "
+"di suggerimento nei templates."
+
+#: admin/cloud-search-admin-docs.php:360
 msgid "How to write your custom script"
 msgstr "Come scrivere il vostro script"
 
-#: admin/cloud-search-admin-docs.php:358
+#: admin/cloud-search-admin-docs.php:361
 msgid ""
 "The built-in search page uses jQuery to initialize search engine. As you can "
 "see in the following code, the page provides some values to a ACS init "
@@ -640,7 +650,7 @@ msgstr ""
 "IDs degli elementi HTML in cui si desidera inserire i risultati, il loader "
 "di caricamento e il messaggio di \"Carica altri\"."
 
-#: admin/cloud-search-admin-docs.php:378
+#: admin/cloud-search-admin-docs.php:381
 msgid ""
 "If you do not want to use jQuery or you need to change the script behavior, "
 "you can try to write your custom script code (with your preferred library or "
@@ -651,7 +661,7 @@ msgstr ""
 "dello script personalizzato (con la vostra libreria o framework preferito) e "
 "potrebbe essere simile a:"
 
-#: admin/cloud-search-admin-docs.php:408
+#: admin/cloud-search-admin-docs.php:411
 msgid ""
 "Where \"type_field\" could be \"all\" for searching in all the fields or a "
 "specific field name, \"sort_field\" could be \"_score\", \"post_date_gmt\", "
@@ -685,11 +695,11 @@ msgstr ""
 "stesso numero di elementi la clausola di ordinamento verrà composto con più "
 "valori."
 
-#: admin/cloud-search-admin-docs.php:409
+#: admin/cloud-search-admin-docs.php:412
 msgid "The API response looks like (JSON format):"
 msgstr "La risposta di un API (formato JSON) è del tipo:"
 
-#: admin/cloud-search-admin-docs.php:429
+#: admin/cloud-search-admin-docs.php:432
 msgid ""
 "Where \"code\" and \"message\" represent a feedback of the operation (e.g. "
 "\"ok\" or \"error\"), \"actions\" contains the actions performed (in the "
@@ -710,11 +720,11 @@ msgstr ""
 "gestire l'impaginazione, il messaggio \"Nessun risultato\" e la funzionalità "
 "del \"Carica altri\"."
 
-#: admin/cloud-search-admin-docs.php:431
+#: admin/cloud-search-admin-docs.php:434
 msgid "What's new with terms?"
 msgstr "Cosa c'è di nuovo coi term?"
 
-#: admin/cloud-search-admin-docs.php:432
+#: admin/cloud-search-admin-docs.php:435
 msgid ""
 "Added support for terms, the APIs results change not returning an IDs array "
 "but an object array (with ID and type fields)."
@@ -722,11 +732,11 @@ msgstr ""
 "Aggiunto il supporto per i terms, i risultati delle API cambiano non "
 "restituendo un array di IDs ma un array di oggetti (con campi ID e tipo)."
 
-#: admin/cloud-search-admin-docs.php:433
+#: admin/cloud-search-admin-docs.php:436
 msgid "The \"acs_api_search\" API JSON response change from an array of IDs"
 msgstr "La risposta JSON dell'API \"acs_api_search\" cambia da un array di IDs"
 
-#: admin/cloud-search-admin-docs.php:442
+#: admin/cloud-search-admin-docs.php:445
 msgid ""
 "to an array of object composed by the entity ID and the entity type (\"post"
 "\" or \"term\")"
@@ -734,7 +744,7 @@ msgstr ""
 "ad un array di oggetti composti dall'ID e dal tipo dell'entità (\"post\" o "
 "\"term\")"
 
-#: admin/cloud-search-admin-docs.php:457
+#: admin/cloud-search-admin-docs.php:460
 msgid ""
 "The \"acs_api_search_full\" API JSON response does not change. It contains "
 "an array of object that represent the results."
@@ -742,7 +752,7 @@ msgstr ""
 "La risposta JSON dell'API \"acs_api_search\" non cambia. Contiene un array "
 "di oggetto che rappresenta i risultati."
 
-#: admin/cloud-search-admin-docs.php:465
+#: admin/cloud-search-admin-docs.php:468
 msgid ""
 "Generally all the classes of the plugin start with the \"acs\" prefix. You "
 "can override the plugin CSS rules adding to your theme's stylesheet the "
@@ -752,11 +762,11 @@ msgstr ""
 "possibile sovrascrivere le regole CSS aggiungendo al foglio di stile del "
 "proprio tema le seguenti regole, modificando quindi i valori predefiniti:"
 
-#: admin/cloud-search-admin-docs.php:468
+#: admin/cloud-search-admin-docs.php:471
 msgid "Front page header rules"
 msgstr "Regole header pagina risultato ricerca"
 
-#: admin/cloud-search-admin-docs.php:469
+#: admin/cloud-search-admin-docs.php:472
 msgid ""
 "Changing this rules you can alter the search page header, especially, you "
 "can add custom rules for page title and subtitle. Usually the page title "
@@ -769,11 +779,11 @@ msgstr ""
 "titolo della pagina contiene la frase \"Hai cercato\" e il sottotitolo "
 "contiene il contatore del numero dei risultati di una ricerca."
 
-#: admin/cloud-search-admin-docs.php:478
+#: admin/cloud-search-admin-docs.php:481
 msgid "Front page filters rules"
 msgstr "Regole filtri pagina risultato ricerca"
 
-#: admin/cloud-search-admin-docs.php:479
+#: admin/cloud-search-admin-docs.php:482
 msgid ""
 "Changing this rules you can alter the search page filter section, you can "
 "change all about the filter dropdowns, the label style, the select input "
@@ -784,11 +794,11 @@ msgstr ""
 "lo stile dell'etichetta di ogni filtro, lo stile dei menu a tendina di ogni "
 "filtro e lo stile dell'intera sezione dei filtri."
 
-#: admin/cloud-search-admin-docs.php:491
+#: admin/cloud-search-admin-docs.php:494
 msgid "Front page results rules"
 msgstr "Regole elenco risultati pagina risultato ricerca"
 
-#: admin/cloud-search-admin-docs.php:492
+#: admin/cloud-search-admin-docs.php:495
 msgid ""
 "Changing this rules you can alter the search page results section, you can "
 "modify the \"no results\" and the \"load more\" containers, the result items "
@@ -800,11 +810,11 @@ msgstr ""
 "dimensione dell'immagine mostrata nei singoli risultati al vostro tema e lo "
 "stile dell'intera sezione dei risultati."
 
-#: admin/cloud-search-admin-docs.php:505
+#: admin/cloud-search-admin-docs.php:508
 msgid "Front page item result rules"
 msgstr "Regole singolo risultato pagina risultato ricerca"
 
-#: admin/cloud-search-admin-docs.php:506
+#: admin/cloud-search-admin-docs.php:509
 msgid ""
 "Changing this rules you can alter the search page item results layout. By "
 "default the plugin try to preserve the theme CSS rules, but overriding these "
@@ -824,11 +834,11 @@ msgstr ""
 "evidenza, il formato del post, la data del post, l'autore, la lista delle "
 "categorie e dei tags e il link ai commenti."
 
-#: admin/cloud-search-admin-docs.php:524
+#: admin/cloud-search-admin-docs.php:527
 msgid "Suggestions"
 msgstr "Suggerimenti"
 
-#: admin/cloud-search-admin-docs.php:525
+#: admin/cloud-search-admin-docs.php:528
 msgid ""
 "In order to customize the suggestions look & feel you can, if you need a "
 "simple customization, use the plugin settings configuration and change "
@@ -843,7 +853,7 @@ msgstr ""
 "seguenti regole CSS (semplicemente cambiando i valori e aggiungendo la "
 "clausola \"!important\")."
 
-#: admin/cloud-search-admin-docs.php:558
+#: admin/cloud-search-admin-docs.php:561
 msgid ""
 "Fields marked with (*) will be overridden with plugin settings (if "
 "configured)."
@@ -851,11 +861,11 @@ msgstr ""
 "I campi contrassegnati con (*) vengono sostituiti con le impostazioni del "
 "plugin (se configurate)."
 
-#: admin/cloud-search-admin-docs.php:566
+#: admin/cloud-search-admin-docs.php:569
 msgid "Customize load more with HTML"
 msgstr "Personalizza il messaggio di \"carica altri\" con un HTML"
 
-#: admin/cloud-search-admin-docs.php:567
+#: admin/cloud-search-admin-docs.php:570
 msgid ""
 "In the \"Setting\" section you have the opportunity to customize the \"load "
 "more\" message using a simple string, but you can also set an HTML snippet "
@@ -866,11 +876,11 @@ msgstr ""
 "impostare un frammento di HTML se si vuole personalizzare il \"loader\", ad "
 "esempio con:"
 
-#: admin/cloud-search-admin-docs.php:579
+#: admin/cloud-search-admin-docs.php:582
 msgid "Customize template for no results"
 msgstr "Personalizza il messaggio di \"nessun risultato\" con un template"
 
-#: admin/cloud-search-admin-docs.php:580
+#: admin/cloud-search-admin-docs.php:583
 msgid ""
 "In the \"Setting\" section you have the opportunity to customize the \"no "
 "results\" message using a simple string, but you can also set an HTML "
@@ -887,11 +897,11 @@ msgstr ""
 "la ricerca non produca articoli il template HTML sarà visualizzato "
 "all'interno del contenitore dei risultati."
 
-#: admin/cloud-search-admin-docs.php:582
+#: admin/cloud-search-admin-docs.php:585
 msgid "Plugin templates"
 msgstr "I templates del plugin"
 
-#: admin/cloud-search-admin-docs.php:584
+#: admin/cloud-search-admin-docs.php:587
 msgid ""
 "The plugin built-in template use a generic HTML optimized to fit in all the "
 "WordPress themes. If you are using a \"native\" WordPress theme, the plugin "
@@ -910,17 +920,17 @@ msgstr ""
 "del tema attivo, se si tratta di un tema \"nativo\" utilizzerà la versione "
 "ottimizzata per il tema , altrimenti utilizzerà l'HTML generico."
 
-#: admin/cloud-search-admin-docs.php:585
+#: admin/cloud-search-admin-docs.php:588
 msgid "The actual themes with an optimized template are:"
 msgstr "I temi attualmente con un template ottimizzato sono:"
 
-#: admin/cloud-search-admin-docs.php:596
+#: admin/cloud-search-admin-docs.php:601
 msgid "More about item image size and custom item image ID fields"
 msgstr ""
 "Altro sui campi nome taglio immagine personalizzato e ID immagine "
 "personalizzata"
 
-#: admin/cloud-search-admin-docs.php:598
+#: admin/cloud-search-admin-docs.php:603
 msgid ""
 "The \"Item image size name\" and \"Custom item image ID\" fields are an "
 "extra feature used for storing in the index an extra field with a post "
@@ -947,7 +957,7 @@ msgstr ""
 "caso la possibilità di leggere l'immagine del post definito da un ambiente "
 "esterno."
 
-#: admin/cloud-search-admin-docs.php:599
+#: admin/cloud-search-admin-docs.php:604
 msgid ""
 "To solve this problem the plugin stores an extra text field with the name "
 "\"post_image\" and every time you sync a post this field is filled with the "
@@ -973,7 +983,7 @@ msgstr ""
 "Thumbnails\", è possibile memorizzare anche questo tipo di \"media\" "
 "nell'indice CloudSearch."
 
-#: admin/cloud-search-admin-docs.php:600
+#: admin/cloud-search-admin-docs.php:605
 msgid ""
 "PS: if a \"Custom item image ID\" is provided, the plugin will search the "
 "image using \"Multiple Post Thumbnails\" without reading the \"Item image "
@@ -983,11 +993,11 @@ msgstr ""
 "l'immagine utilizzando \"Multiple Post Thumbnails\", senza leggere il campo "
 "\"Nome taglio immagine personalizzato\"."
 
-#: admin/cloud-search-admin-docs.php:603
+#: admin/cloud-search-admin-docs.php:608
 msgid "Manipulate standard fields"
 msgstr "Manipolare i campi standard"
 
-#: admin/cloud-search-admin-docs.php:605
+#: admin/cloud-search-admin-docs.php:610
 msgid ""
 "You can manipulate standard fields (such as post_title, post_content, etc) "
 "adding in your sub-theme a filter named \"cloud_search_#POST_TYPE#_fields\" "
@@ -1081,10 +1091,10 @@ msgid "You can learn more about expected costs"
 msgstr "Puoi sapere di più sui costi previsti"
 
 #: admin/cloud-search-admin-help.php:45 admin/cloud-search-admin-help.php:273
-#: admin/cloud-search-admin-settings.php:264
-#: admin/cloud-search-admin-settings.php:277
-#: admin/cloud-search-admin-settings.php:332
-#: admin/cloud-search-admin-settings.php:338
+#: admin/cloud-search-admin-settings.php:273
+#: admin/cloud-search-admin-settings.php:286
+#: admin/cloud-search-admin-settings.php:341
+#: admin/cloud-search-admin-settings.php:347
 msgid "here"
 msgstr "qui"
 
@@ -1543,7 +1553,7 @@ msgid "#OBJ#<br /><br />"
 msgstr "#OBJ#<br /><br />"
 
 #: admin/cloud-search-admin-help.php:149
-#: admin/cloud-search-admin-settings.php:241
+#: admin/cloud-search-admin-settings.php:250
 msgid "Frontpage settings"
 msgstr "Impostazioni pagina di ricerca"
 
@@ -1733,7 +1743,7 @@ msgid "The default sort field could be:"
 msgstr "Il campo di ordinamento predefinito può assumere i valori:"
 
 #: admin/cloud-search-admin-help.php:177
-#: admin/cloud-search-admin-settings.php:545
+#: admin/cloud-search-admin-settings.php:554
 msgid "Relevance"
 msgstr "Rilevanza"
 
@@ -1772,7 +1782,7 @@ msgstr ""
 "informazioni su date."
 
 #: admin/cloud-search-admin-help.php:189
-#: admin/cloud-search-admin-settings.php:415
+#: admin/cloud-search-admin-settings.php:424
 msgid "Highlighting settings"
 msgstr "Impostazioni di evidenziazione"
 
@@ -1805,7 +1815,7 @@ msgid "The highlights features are available also for term results."
 msgstr "Li sono disponibili anche per risultati a termine."
 
 #: admin/cloud-search-admin-help.php:194
-#: admin/cloud-search-admin-settings.php:476
+#: admin/cloud-search-admin-settings.php:485
 msgid "Suggestions settings"
 msgstr "Impostazioni suggerimenti"
 
@@ -1846,7 +1856,7 @@ msgstr ""
 "attivare i suggerimenti."
 
 #: admin/cloud-search-admin-help.php:199
-#: admin/cloud-search-admin-settings.php:594
+#: admin/cloud-search-admin-settings.php:603
 msgid "Other settings"
 msgstr "Altre impostazioni"
 
@@ -2774,21 +2784,22 @@ msgstr "Gestione dei campi personalizzati"
 msgid ""
 "You have the opportunity to mark as sortable some custom fields. In this sub-"
 "section you have to configure your custom fields forcing their type, if int, "
-"double or literal, and defining which fields should be defined as \"Sortable"
-"\" in CloudSearch (by default custom fields are created as text not "
-"sortable). This operation is important because text fields don't always sort "
-"well. For this reason, you have to provide a comma separated list of custom "
-"fields (especially if the original values are integers or double)."
+"double, date or literal, and defining which fields should be defined as "
+"\"Sortable\" in CloudSearch (by default custom fields are created as text "
+"not sortable). This operation is important because text fields don't always "
+"sort well. For this reason, you have to provide a comma separated list of "
+"custom fields (especially if the original values are integers, doubles or "
+"dates)."
 msgstr ""
 "Hai la possibilità di contrassegnare come \"ordinabili\" alcuni campi "
 "personalizzati. In questa sottosezione devi configurare i tuoi campi "
-"personalizzati forzando il loro tipo, se int, double o literal, e definendo "
-"quali campi dovrebbero essere definiti come \"Sortable\" in CloudSearch (per "
-"impostazione predefinita i campi personalizzati vengono creati come testo "
-"non ordinabile). Questa operazione è importante perché i campi di testo non "
-"sempre ordinano bene. Per questo motivo, devi fornire un elenco separato da "
-"virgole di campi personalizzati (specialmente se i loro valori sono int o "
-"double)."
+"personalizzati forzando il loro tipo, se int, double, date o literal, e "
+"definendo quali campi dovrebbero essere definiti come \"Sortable\" in "
+"CloudSearch (per impostazione predefinita i campi personalizzati vengono "
+"creati come testo non ordinabile). Questa operazione è importante perché i "
+"campi di testo non sempre ordinano bene. Per questo motivo, devi fornire un "
+"elenco separato da virgole di campi personalizzati (specialmente se i loro "
+"valori sono int, double o date)."
 
 #: admin/cloud-search-admin-settings.php:196
 msgid ""
@@ -2823,10 +2834,22 @@ msgstr ""
 "\" in CloudSearch."
 
 #: admin/cloud-search-admin-settings.php:219
+msgid "Date fields"
+msgstr "Campi data"
+
+#: admin/cloud-search-admin-settings.php:223
+msgid ""
+"Enter comma separated list of fields to be converted to \"date\" in "
+"CloudSearch."
+msgstr ""
+"Inserisci un elenco separato da virgola dei campi da convertire in \"date\" "
+"in CloudSearch."
+
+#: admin/cloud-search-admin-settings.php:228
 msgid "Literal fields"
 msgstr "Campi literal"
 
-#: admin/cloud-search-admin-settings.php:223
+#: admin/cloud-search-admin-settings.php:232
 msgid ""
 "Enter comma separated list of fields to be converted to \"literal\" in "
 "CloudSearch."
@@ -2834,11 +2857,11 @@ msgstr ""
 "Inserisci un elenco separato da virgola dei campi da convertire in \"literal"
 "\" in CloudSearch."
 
-#: admin/cloud-search-admin-settings.php:228
+#: admin/cloud-search-admin-settings.php:237
 msgid "Sortable fields"
 msgstr "Campi ordinali"
 
-#: admin/cloud-search-admin-settings.php:232
+#: admin/cloud-search-admin-settings.php:241
 msgid ""
 "Enter comma separated list of fields to be created/managed as \"Sortable\" "
 "in CloudSearch."
@@ -2846,7 +2869,7 @@ msgstr ""
 "Inserisci un elenco separato da virgola dei campi da creare / gestire come "
 "\"ordinabili\" in CloudSearch."
 
-#: admin/cloud-search-admin-settings.php:243
+#: admin/cloud-search-admin-settings.php:252
 msgid ""
 "In this section you can choose the content box used to display search "
 "results and choose if you want to use the default plugin search page (or one "
@@ -2859,15 +2882,15 @@ msgstr ""
 "una da soli), scegliere se abilitare il supporto jQuery e se si desidera "
 "visualizzare i filtri nella pagina dei risultati di ricerca."
 
-#: admin/cloud-search-admin-settings.php:248
+#: admin/cloud-search-admin-settings.php:257
 msgid "Content box type"
 msgstr "Tipologia box di contenuto"
 
-#: admin/cloud-search-admin-settings.php:258
+#: admin/cloud-search-admin-settings.php:267
 msgid "Use plugin search page"
 msgstr "Usa la pagina di ricerca fornita dal plugin"
 
-#: admin/cloud-search-admin-settings.php:263
+#: admin/cloud-search-admin-settings.php:272
 msgid ""
 "Selecting this value you choose to use the plugin search page instead the "
 "default WordPress search page, otherwise if you deselect this value you have "
@@ -2878,14 +2901,14 @@ msgstr ""
 "WordPress, in caso contrario, è necessario creare la propria pagina di "
 "ricerca scrivendo uno script custom per l'integrazione con le API."
 
-#: admin/cloud-search-admin-settings.php:264
-#: admin/cloud-search-admin-settings.php:277
-#: admin/cloud-search-admin-settings.php:332
-#: admin/cloud-search-admin-settings.php:338
+#: admin/cloud-search-admin-settings.php:273
+#: admin/cloud-search-admin-settings.php:286
+#: admin/cloud-search-admin-settings.php:341
+#: admin/cloud-search-admin-settings.php:347
 msgid "For more details click"
 msgstr "Per ulteriori dettagli clicca"
 
-#: admin/cloud-search-admin-settings.php:265
+#: admin/cloud-search-admin-settings.php:274
 msgid ""
 "If you choose to use the plugin search page it's highly recommended to use "
 "the jQuery support and the 'Plugin based' content box type."
@@ -2894,11 +2917,11 @@ msgstr ""
 "consigliato di utilizzare il supporto jQuery e la tipologia di box di "
 "contenuto 'Plugin based'."
 
-#: admin/cloud-search-admin-settings.php:271
+#: admin/cloud-search-admin-settings.php:280
 msgid "Use jQuery"
 msgstr "Usa jQuery"
 
-#: admin/cloud-search-admin-settings.php:276
+#: admin/cloud-search-admin-settings.php:285
 msgid ""
 "Plugin needs to used jQuery to get search result asynchronously. If you "
 "don't want to use jQuery uncheck this flag to avoid plugin and jQuery "
@@ -2913,11 +2936,11 @@ msgstr ""
 "per ottenere i risultati di ricerca. Potete guardare l'endpoint REST del "
 "plugin per avere informazioni su come creare la propria pagina di ricerca."
 
-#: admin/cloud-search-admin-settings.php:283
+#: admin/cloud-search-admin-settings.php:292
 msgid "Show filters"
 msgstr "Mostra filtri"
 
-#: admin/cloud-search-admin-settings.php:287
+#: admin/cloud-search-admin-settings.php:296
 msgid ""
 "With this option you can choose if you want to show filter select boxes in "
 "your frontend search page. Using filters you can change the default results "
@@ -2930,19 +2953,19 @@ msgstr ""
 "filtro ulteriore alla query di ricerca. Personalizzando gli stili CSS si può "
 "facilmente cambiare il layout dei filtri."
 
-#: admin/cloud-search-admin-settings.php:292
+#: admin/cloud-search-admin-settings.php:301
 msgid "Custom CSS"
 msgstr "CSS personalizzato"
 
-#: admin/cloud-search-admin-settings.php:296
+#: admin/cloud-search-admin-settings.php:305
 msgid "Customize search page CSS here."
 msgstr "Inserisci il CSS personalizzare per la pagina di ricerca qui."
 
-#: admin/cloud-search-admin-settings.php:305
+#: admin/cloud-search-admin-settings.php:314
 msgid "Results settings"
 msgstr "Impostazioni risultati"
 
-#: admin/cloud-search-admin-settings.php:307
+#: admin/cloud-search-admin-settings.php:316
 msgid ""
 "In this section you can customize your result pages choosing fields to "
 "display in every result item (further than the standard fields such as "
@@ -2955,99 +2978,99 @@ msgstr ""
 "altri\" e \"nessun risultato\"), il numero massimo di elementi da restituire "
 "e i valori predefiniti per i filtri."
 
-#: admin/cloud-search-admin-settings.php:312
-#: admin/cloud-search-admin-settings.php:348
+#: admin/cloud-search-admin-settings.php:321
+#: admin/cloud-search-admin-settings.php:357
 msgid "Showed fields"
 msgstr "Campi visualizzati"
 
-#: admin/cloud-search-admin-settings.php:312
+#: admin/cloud-search-admin-settings.php:321
 msgid "for posts"
 msgstr "per i posts"
 
-#: admin/cloud-search-admin-settings.php:314
+#: admin/cloud-search-admin-settings.php:323
 msgid "Sticky flag"
 msgstr "Flag in evidenza"
 
-#: admin/cloud-search-admin-settings.php:315
+#: admin/cloud-search-admin-settings.php:324
 msgid "Post formats"
 msgstr "Formati"
 
-#: admin/cloud-search-admin-settings.php:316
+#: admin/cloud-search-admin-settings.php:325
 #: templates/cloud-search-content-twentytwenty.php:50
 msgid "Categories"
 msgstr "Categorie"
 
-#: admin/cloud-search-admin-settings.php:317
+#: admin/cloud-search-admin-settings.php:326
 #: templates/cloud-search-content-twentytwenty.php:168
 msgid "Tags"
 msgstr "Tags"
 
-#: admin/cloud-search-admin-settings.php:318
+#: admin/cloud-search-admin-settings.php:327
 msgid "Comments link"
 msgstr "Link ai commenti"
 
-#: admin/cloud-search-admin-settings.php:319
-#: admin/cloud-search-admin-settings.php:350
+#: admin/cloud-search-admin-settings.php:328
+#: admin/cloud-search-admin-settings.php:359
 msgid "Content"
 msgstr "Contenuto"
 
-#: admin/cloud-search-admin-settings.php:320
+#: admin/cloud-search-admin-settings.php:329
 msgid "Excerpt"
 msgstr "Sommario"
 
-#: admin/cloud-search-admin-settings.php:325
-#: admin/cloud-search-admin-settings.php:355 cloud-search-utils.php:594
+#: admin/cloud-search-admin-settings.php:334
+#: admin/cloud-search-admin-settings.php:364 cloud-search-utils.php:594
 msgid "Custom field"
 msgstr "Campo personalizzato"
 
-#: admin/cloud-search-admin-settings.php:326
+#: admin/cloud-search-admin-settings.php:335
 msgid "show a custom field in the results (after content and excerpt)"
 msgstr ""
 "visualizza un campo personalizzato nei risultati (mostrato dopo il testo ed "
 "il sommario)"
 
-#: admin/cloud-search-admin-settings.php:330
+#: admin/cloud-search-admin-settings.php:339
 msgid "Image"
 msgstr "Immagine"
 
-#: admin/cloud-search-admin-settings.php:331
+#: admin/cloud-search-admin-settings.php:340
 msgid "use a custom image format (leave empty for default)"
 msgstr ""
 "usa un formato immagine personalizzato (lasciare vuoto per usare il "
 "predefinito)"
 
-#: admin/cloud-search-admin-settings.php:336
+#: admin/cloud-search-admin-settings.php:345
 msgid "Date"
 msgstr "Data"
 
-#: admin/cloud-search-admin-settings.php:337
+#: admin/cloud-search-admin-settings.php:346
 msgid "use a custom date format (leave empty for default)"
 msgstr ""
 "usa un formato data personalizzato (lasciare vuoto per usare il predefinito)"
 
-#: admin/cloud-search-admin-settings.php:342
+#: admin/cloud-search-admin-settings.php:351
 msgid "Author"
 msgstr "Autore"
 
-#: admin/cloud-search-admin-settings.php:343
+#: admin/cloud-search-admin-settings.php:352
 msgid "use a custom author format"
 msgstr "usa un formato personalizzato"
 
-#: admin/cloud-search-admin-settings.php:348
+#: admin/cloud-search-admin-settings.php:357
 msgid "for terms"
 msgstr "per i terms"
 
-#: admin/cloud-search-admin-settings.php:356
+#: admin/cloud-search-admin-settings.php:365
 msgid "show a custom field in the results (after content)"
 msgstr ""
 "visualizza un campo personalizzato nei risultati (mostrato dopo il testo / "
 "sommario)"
 
-#: admin/cloud-search-admin-settings.php:360
+#: admin/cloud-search-admin-settings.php:369
 msgid "No results message"
 msgstr "Messaggio per nessun risultato"
 
-#: admin/cloud-search-admin-settings.php:365
+#: admin/cloud-search-admin-settings.php:374
 msgid ""
 "Provide a custom name for the no results content box (eg: content-none). The "
 "'##YOUR-VALUE##.php' template in your theme root folder will be used for no "
@@ -3064,31 +3087,31 @@ msgstr ""
 "valore. Se si imposta un valore personalizzato verrà utilizzato al posto del "
 "messaggio di testo predefinito."
 
-#: admin/cloud-search-admin-settings.php:372
+#: admin/cloud-search-admin-settings.php:381
 msgid "Load more message"
 msgstr "Messaggio per il carica altro"
 
-#: admin/cloud-search-admin-settings.php:378
+#: admin/cloud-search-admin-settings.php:387
 msgid "Length of the text"
 msgstr "Lunghezza del testo"
 
-#: admin/cloud-search-admin-settings.php:383
+#: admin/cloud-search-admin-settings.php:392
 msgid "words"
 msgstr "parole"
 
-#: admin/cloud-search-admin-settings.php:384
+#: admin/cloud-search-admin-settings.php:393
 msgid "chars"
 msgstr "caratteri"
 
-#: admin/cloud-search-admin-settings.php:389
+#: admin/cloud-search-admin-settings.php:398
 msgid "Search max items"
 msgstr "Numero massimo di elementi restituiti"
 
-#: admin/cloud-search-admin-settings.php:393
+#: admin/cloud-search-admin-settings.php:402
 msgid "Field weights"
 msgstr "Pesi sui campi"
 
-#: admin/cloud-search-admin-settings.php:397
+#: admin/cloud-search-admin-settings.php:406
 msgid ""
 "You can assign weights to selected fields so you can boost the relevance "
 "_score of documents with matches in key fields and minimize the impact of "
@@ -3107,15 +3130,15 @@ msgstr ""
 "post_content su 0.5, come il seguente esempio (usa \",\" come separatore "
 "senza inserire spazi tra i valori):"
 
-#: admin/cloud-search-admin-settings.php:403
+#: admin/cloud-search-admin-settings.php:412
 msgid "Default sort field"
 msgstr "Campo di ordinamento predefinito"
 
-#: admin/cloud-search-admin-settings.php:407
+#: admin/cloud-search-admin-settings.php:416
 msgid "Default sort order"
 msgstr "Tipologia di ordinamento predefinito"
 
-#: admin/cloud-search-admin-settings.php:417
+#: admin/cloud-search-admin-settings.php:426
 msgid ""
 "In this section you can find a list of settings to highlight search results. "
 "You can choose a style type between: strong, italic and underline. "
@@ -3133,54 +3156,54 @@ msgstr ""
 "impostazione predefinita, queste impostazioni vengono utilizzate nei "
 "contenuti e nei sommari dei posts."
 
-#: admin/cloud-search-admin-settings.php:422
+#: admin/cloud-search-admin-settings.php:431
 msgid "Style type"
 msgstr "Tipologia stile"
 
-#: admin/cloud-search-admin-settings.php:425
+#: admin/cloud-search-admin-settings.php:434
 msgid "None"
 msgstr "Nessuno"
 
-#: admin/cloud-search-admin-settings.php:426
+#: admin/cloud-search-admin-settings.php:435
 msgid "Strong"
 msgstr "Grassetto"
 
-#: admin/cloud-search-admin-settings.php:427
+#: admin/cloud-search-admin-settings.php:436
 msgid "Italic"
 msgstr "Corsivo"
 
-#: admin/cloud-search-admin-settings.php:428
+#: admin/cloud-search-admin-settings.php:437
 msgid "Underline"
 msgstr "Sottolineato"
 
-#: admin/cloud-search-admin-settings.php:433
+#: admin/cloud-search-admin-settings.php:442
 msgid "Highlight in titles?"
 msgstr "Evidenzia titoli?"
 
-#: admin/cloud-search-admin-settings.php:436
+#: admin/cloud-search-admin-settings.php:445
 msgid "Highlight also in search result titles."
 msgstr "Evidenza anche nei titoli."
 
-#: admin/cloud-search-admin-settings.php:440
+#: admin/cloud-search-admin-settings.php:449
 msgid "Text color"
 msgstr "Colore testo"
 
-#: admin/cloud-search-admin-settings.php:443
-#: admin/cloud-search-admin-settings.php:450
-#: admin/cloud-search-admin-settings.php:512
-#: admin/cloud-search-admin-settings.php:524
+#: admin/cloud-search-admin-settings.php:452
+#: admin/cloud-search-admin-settings.php:459
+#: admin/cloud-search-admin-settings.php:521
+#: admin/cloud-search-admin-settings.php:533
 msgid "Use HTML color codes (#rgb or #rrggbb)."
 msgstr "Utilizzare codici colori HTML (#rgs o #rrggbb)."
 
-#: admin/cloud-search-admin-settings.php:447
+#: admin/cloud-search-admin-settings.php:456
 msgid "Background color"
 msgstr "Colore sfondo"
 
-#: admin/cloud-search-admin-settings.php:454
+#: admin/cloud-search-admin-settings.php:463
 msgid "CSS style"
 msgstr "Stile CSS"
 
-#: admin/cloud-search-admin-settings.php:458
+#: admin/cloud-search-admin-settings.php:467
 msgid ""
 "Provide a CSS inline style, style will be inserted in a span (eg: text-"
 "decoration:underline; color:#FF0000;)"
@@ -3188,11 +3211,11 @@ msgstr ""
 "Inserisci uno stile CSS inline, lo stile verrà inserito in uno span "
 "(esempio: text-decoration:underline; color:#FF0000;)"
 
-#: admin/cloud-search-admin-settings.php:463
+#: admin/cloud-search-admin-settings.php:472
 msgid "CSS class"
 msgstr "Classe CSS"
 
-#: admin/cloud-search-admin-settings.php:467
+#: admin/cloud-search-admin-settings.php:476
 msgid ""
 "Insert a CSS class name, search results will be wrapped in a span with the "
 "provided class."
@@ -3200,7 +3223,7 @@ msgstr ""
 "Inserisci una classe CSS, le occorrenze verranno inserite in uno span con la "
 "classe inserita."
 
-#: admin/cloud-search-admin-settings.php:478
+#: admin/cloud-search-admin-settings.php:487
 msgid ""
 "In this section you can find a list of settings to set up the search "
 "suggestions. First of all you can activate the suggestions by turning on the "
@@ -3224,11 +3247,11 @@ msgstr ""
 "configurati, il plugin effettua una richiesta ad una API CloudSearch e "
 "restituisce i risultati di ricerca."
 
-#: admin/cloud-search-admin-settings.php:483
+#: admin/cloud-search-admin-settings.php:492
 msgid "Active"
 msgstr "Attivo"
 
-#: admin/cloud-search-admin-settings.php:486
+#: admin/cloud-search-admin-settings.php:495
 msgid ""
 "Enable search field suggestions (the \"Use jQuery\" flag is mandatory if you "
 "want to activate suggestions)."
@@ -3236,11 +3259,11 @@ msgstr ""
 "Attiva suggerimenti sulla ricerca (il flag \"Usa jQuery\" è obbligatorio se "
 "si desidera attivare i suggerimenti)."
 
-#: admin/cloud-search-admin-settings.php:490
+#: admin/cloud-search-admin-settings.php:499
 msgid "Search field selector"
 msgstr "Selettore campo di ricerca"
 
-#: admin/cloud-search-admin-settings.php:493
+#: admin/cloud-search-admin-settings.php:502
 msgid ""
 "Any valid CSS selector will work. The default search box for WordPress is: "
 "input[name='s']"
@@ -3248,11 +3271,11 @@ msgstr ""
 "Ogni selettore CSS valido funzionerà. La casella di ricerca di default per "
 "WordPress è: input[name='s']"
 
-#: admin/cloud-search-admin-settings.php:497
+#: admin/cloud-search-admin-settings.php:506
 msgid "Search only in titles?"
 msgstr "Cerca solo nei titoli?"
 
-#: admin/cloud-search-admin-settings.php:500
+#: admin/cloud-search-admin-settings.php:509
 msgid ""
 "Enable if you want to search suggested items using only titles. If disabled, "
 "suggestion engine searches in all fields but may be slower."
@@ -3261,74 +3284,74 @@ msgstr ""
 "attivo, il motore dei suggerimenti cercherà in tutti i campi, potrà "
 "risultare più lento."
 
-#: admin/cloud-search-admin-settings.php:504
+#: admin/cloud-search-admin-settings.php:513
 msgid "Styles (for all rows)"
 msgstr "Stile (tutte le righe)"
 
-#: admin/cloud-search-admin-settings.php:506
-#: admin/cloud-search-admin-settings.php:518
+#: admin/cloud-search-admin-settings.php:515
+#: admin/cloud-search-admin-settings.php:527
 msgid "Font size"
 msgstr "Dimensione carattere"
 
-#: admin/cloud-search-admin-settings.php:508
-#: admin/cloud-search-admin-settings.php:520
+#: admin/cloud-search-admin-settings.php:517
+#: admin/cloud-search-admin-settings.php:529
 msgid "Color"
 msgstr "Colore testo"
 
-#: admin/cloud-search-admin-settings.php:510
-#: admin/cloud-search-admin-settings.php:522
+#: admin/cloud-search-admin-settings.php:519
+#: admin/cloud-search-admin-settings.php:531
 msgid "Background"
 msgstr "Colore sfondo"
 
-#: admin/cloud-search-admin-settings.php:516
+#: admin/cloud-search-admin-settings.php:525
 msgid "Styles (for focused row)"
 msgstr "Stile (riga in evidenza)"
 
-#: admin/cloud-search-admin-settings.php:528
+#: admin/cloud-search-admin-settings.php:537
 msgid "Chars trigger"
 msgstr "Trigger caratteri"
 
-#: admin/cloud-search-admin-settings.php:531
+#: admin/cloud-search-admin-settings.php:540
 msgid "The minimum number of chars before the suggestions starts."
 msgstr "Il numero minimo di caratteri prima che si avviino i suggerimenti."
 
-#: admin/cloud-search-admin-settings.php:535
+#: admin/cloud-search-admin-settings.php:544
 msgid "Number of results"
 msgstr "Numero di risultati"
 
-#: admin/cloud-search-admin-settings.php:538
+#: admin/cloud-search-admin-settings.php:547
 msgid "The maximum number of suggested items."
 msgstr "Numero massimo di elementi suggeriti."
 
-#: admin/cloud-search-admin-settings.php:542
+#: admin/cloud-search-admin-settings.php:551
 msgid "Suggested items order"
 msgstr "Ordinamento campi suggeriti"
 
-#: admin/cloud-search-admin-settings.php:546
+#: admin/cloud-search-admin-settings.php:555
 msgid "Alphabetically"
 msgstr "Alfabetico"
 
-#: admin/cloud-search-admin-settings.php:547
+#: admin/cloud-search-admin-settings.php:556
 msgid "Alphabetically reverse"
 msgstr "Alfabetico inverso"
 
-#: admin/cloud-search-admin-settings.php:552
+#: admin/cloud-search-admin-settings.php:561
 msgid "Click behaviour"
 msgstr "Comportamento al click"
 
-#: admin/cloud-search-admin-settings.php:555
+#: admin/cloud-search-admin-settings.php:564
 msgid "Do nothing"
 msgstr "Nessuna azione"
 
-#: admin/cloud-search-admin-settings.php:556
+#: admin/cloud-search-admin-settings.php:565
 msgid "Go to link"
 msgstr "Vai al link"
 
-#: admin/cloud-search-admin-settings.php:565
+#: admin/cloud-search-admin-settings.php:574
 msgid "Network settings"
 msgstr "Impostazioni network"
 
-#: admin/cloud-search-admin-settings.php:567
+#: admin/cloud-search-admin-settings.php:576
 msgid ""
 "In this section you can find a set of network settings to change default "
 "configurations. You can provide an alternative value for \"site_id\" and "
@@ -3347,20 +3370,20 @@ msgstr ""
 "utilizzare chiavi diverse per la stessa riga CloudSearch senza così il "
 "rischio di sovrascrivere i dati)."
 
-#: admin/cloud-search-admin-settings.php:572
+#: admin/cloud-search-admin-settings.php:581
 msgid "Site ID"
 msgstr "Site ID"
 
-#: admin/cloud-search-admin-settings.php:576
 #: admin/cloud-search-admin-settings.php:585
+#: admin/cloud-search-admin-settings.php:594
 msgid "Leave empty for default."
 msgstr "Lasciare vuoto per usare il default."
 
-#: admin/cloud-search-admin-settings.php:581
+#: admin/cloud-search-admin-settings.php:590
 msgid "Blog ID"
 msgstr "Blog ID"
 
-#: admin/cloud-search-admin-settings.php:596
+#: admin/cloud-search-admin-settings.php:605
 msgid ""
 "In this section you can find a set of other settings to improve the plugin "
 "configuration. First of all you can provide a set (separated by \",\") of "
@@ -3388,11 +3411,11 @@ msgstr ""
 "obbligatorio, è possibile lasciare vuoto questo campo. Questo campo "
 "aggiuntivo è stato progettato per essere letto da altre applicazioni)."
 
-#: admin/cloud-search-admin-settings.php:601
+#: admin/cloud-search-admin-settings.php:610
 msgid "Custom field types prefix/suffix"
 msgstr "Prefisso/suffisso tipologie di campi"
 
-#: admin/cloud-search-admin-settings.php:605
+#: admin/cloud-search-admin-settings.php:614
 msgid ""
 "Add also private fields to avoid automatically exclusion (e.g. add \"_price"
 "\" to show private field \"price\" in the field types list)."
@@ -3401,11 +3424,11 @@ msgstr ""
 "automaticamente (ad esempio, aggiungi \"_price\" per visualizzare il campo "
 "privato \"price\" nella lista delle tipologie di campi)."
 
-#: admin/cloud-search-admin-settings.php:610
+#: admin/cloud-search-admin-settings.php:619
 msgid "Field values separator"
 msgstr "Separatore dei valori tra i campi"
 
-#: admin/cloud-search-admin-settings.php:614
+#: admin/cloud-search-admin-settings.php:623
 msgid ""
 "Provide a field char to use as values separator (e.g. for category values "
 "use \"ID|NAME\", where \"|\" is the separator char)."
@@ -3414,11 +3437,11 @@ msgstr ""
 "per i valori delle categorie useremo \"ID | NOME\", dove \"|\" è il "
 "carattere separatore)."
 
-#: admin/cloud-search-admin-settings.php:619
+#: admin/cloud-search-admin-settings.php:628
 msgid "Item image size name"
 msgstr "Nome taglio immagine personalizzato"
 
-#: admin/cloud-search-admin-settings.php:623
+#: admin/cloud-search-admin-settings.php:632
 msgid ""
 "If you want to save an image for every indexed post provide the image size "
 "name (e.g. if you are using an \"add_image_size()\" custom format fill the "
@@ -3432,11 +3455,11 @@ msgstr ""
 "funzione). Questo valore non è necessario per recuperare e visualizzare i "
 "risultati, è usata solo per funzioni extra."
 
-#: admin/cloud-search-admin-settings.php:628
+#: admin/cloud-search-admin-settings.php:637
 msgid "Custom item image ID"
 msgstr "ID immagine personalizzata"
 
-#: admin/cloud-search-admin-settings.php:632
+#: admin/cloud-search-admin-settings.php:641
 msgid ""
 "If you are using \"Multiple Post Thumbnails\" plugin, provide here the ID to "
 "retrieve the custom image."
@@ -3444,11 +3467,11 @@ msgstr ""
 "Se si utilizza il plugin \"Multiple Post Thumbnails\", inserisci qui l'ID "
 "per recuperare l'immagine personalizzata."
 
-#: admin/cloud-search-admin-settings.php:637
+#: admin/cloud-search-admin-settings.php:646
 msgid "List of legacy post types to be included in searches"
 msgstr "Tipi di post legacy da includere nelle ricerche"
 
-#: admin/cloud-search-admin-settings.php:641
+#: admin/cloud-search-admin-settings.php:650
 msgid ""
 "Enter comma separated list of types if you want to include some legacy post "
 "types in searches."
@@ -3456,25 +3479,25 @@ msgstr ""
 "Inserisci un elenco di tipi separati da virgole se desideri includere alcuni "
 "tipi di post legacy nelle ricerche."
 
-#: admin/cloud-search-admin-settings.php:646
+#: admin/cloud-search-admin-settings.php:655
 msgid "Hide \"Help\" section from menu"
 msgstr "Nascondi la sezione \"Help\" dal menu"
 
-#: admin/cloud-search-admin-settings.php:649
-#: admin/cloud-search-admin-settings.php:656
-#: admin/cloud-search-admin-settings.php:663
+#: admin/cloud-search-admin-settings.php:658
+#: admin/cloud-search-admin-settings.php:665
+#: admin/cloud-search-admin-settings.php:672
 msgid "Hide page from menu."
 msgstr "Nascondi la pagina dal menu."
 
-#: admin/cloud-search-admin-settings.php:653
+#: admin/cloud-search-admin-settings.php:662
 msgid "Hide \"Documentation\" section from menu"
 msgstr "Nascondi la sezione \"Documentazione\" dal menu"
 
-#: admin/cloud-search-admin-settings.php:660
+#: admin/cloud-search-admin-settings.php:669
 msgid "Hide \"Import / Export\" section from menu"
 msgstr "Nascondi la sezione \"Import / Export\" dal menu"
 
-#: admin/cloud-search-admin-settings.php:672
+#: admin/cloud-search-admin-settings.php:681
 msgid "Save"
 msgstr "Salva"
 

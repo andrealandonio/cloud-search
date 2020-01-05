@@ -90,6 +90,7 @@ function acs_index_create() {
 	// Get custom field parameters
 	$acs_int_fields = array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_int ) ) );
 	$acs_double_fields = array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_double ) ) );
+	$acs_date_fields = array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_date ) ) );
 	$acs_literal_fields = array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_literal ) ) );
 	$acs_sortable_fields = array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_sortable ) ) );
 
@@ -135,8 +136,12 @@ function acs_index_create() {
 	    // Read "SortEnabled" flag
 	    if ( $field_type == 'int' ) $field_sort = $result_field_filtered[ 'Options' ][ 'IntOptions' ][ 'SortEnabled' ];
 	    else if ( $field_type == 'double' ) $field_sort = $result_field_filtered[ 'Options' ][ 'DoubleOptions' ][ 'SortEnabled' ];
+	    else if ( $field_type == 'date' ) $field_sort = $result_field_filtered[ 'Options' ][ 'DateOptions' ][ 'SortEnabled' ];
 	    else if ( $field_type == 'literal' ) $field_sort = $result_field_filtered[ 'Options' ][ 'LiteralOptions' ][ 'SortEnabled' ];
-	    else $field_sort = $result_field_filtered[ 'Options' ][ 'TextOptions' ][ 'SortEnabled' ];
+	    else if ( isset( $result_field_filtered[ 'Options' ][ 'TextOptions' ] ) ) {
+	    	$field_sort = $result_field_filtered[ 'Options' ][ 'TextOptions' ][ 'SortEnabled' ];
+	    }
+	    else $field_sort = 0;
 
 	    // Check if some fields need an update
 	    if ( ! empty( $acs_schema_fields ) && in_array( $field_name_cleaned, $acs_schema_fields ) ) {
@@ -146,6 +151,10 @@ function acs_index_create() {
 		    }
 		    else if ( ! empty( $acs_double_fields ) && in_array( $field_name_cleaned, $acs_double_fields ) && $field_type != 'double' ) {
 			    // Detect double field (need an update)
+			    continue;
+		    }
+		    else if ( ! empty( $acs_date_fields ) && in_array( $field_name_cleaned, $acs_date_fields ) && $field_type != 'date' ) {
+			    // Detect date field (need an update)
 			    continue;
 		    }
 		    else if ( ! empty( $acs_literal_fields ) && in_array( $field_name_cleaned, $acs_literal_fields ) && $field_type != 'literal' ) {
@@ -162,6 +171,7 @@ function acs_index_create() {
 		    }
 		    else if ( ! empty( $acs_int_fields ) && ! in_array( $field_name_cleaned, $acs_int_fields ) &&
 		              ! empty( $acs_double_fields ) && ! in_array( $field_name_cleaned, $acs_double_fields ) &&
+		              ! empty( $acs_date_fields ) && ! in_array( $field_name_cleaned, $acs_date_fields ) &&
 		              ! empty( $acs_literal_fields ) && ! in_array( $field_name_cleaned, $acs_literal_fields ) &&
 		              ! empty( $acs_sortable_fields ) && ! in_array( $field_name_cleaned, $acs_sortable_fields ) &&
 		              ( ! isset( $result_field_filtered[ 'Options' ][ 'TextOptions' ] ) || empty( $result_field_filtered[ 'Options' ][ 'TextOptions' ] ) ) ) {

@@ -95,7 +95,7 @@ function acs_prepare_document( $item, $from_save_transaction = false ) {
 		    // Get custom field parameters
 		    $acs_int_fields = ( ! empty( $settings->acs_schema_fields_int ) ) ? array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_int ) ) ) : array();
 		    $acs_double_fields = ( ! empty( $settings->acs_schema_fields_double ) ) ? array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_double ) ) ) : array();
-
+	
 		    if ( ! empty ( $acs_schema_fields ) ) {
 			    // If there are some custom fields
 			    $acs_schema_fields = explode( ACS::SEPARATOR, $acs_schema_fields );

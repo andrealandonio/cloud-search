@@ -270,8 +270,9 @@ function acs_get_custom_index_fields() {
 	// Get custom field parameters
     $acs_int_fields = ( ! empty( $settings->acs_schema_fields_int ) ) ? array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_int ) ) ) : array();
     $acs_double_fields = ( ! empty( $settings->acs_schema_fields_double ) ) ? array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_double ) ) ) : array();
+	$acs_date_fields = ( ! empty( $settings->acs_schema_fields_date ) ) ? array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_date ) ) ) : array();
 	$acs_literal_fields = ( ! empty( $settings->acs_schema_fields_literal ) ) ? array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_literal ) ) ) : array();
-    $acs_sortable_fields = ( ! empty( $settings->acs_schema_fields_sortable ) ) ? array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_sortable ) ) ) : array();
+	$acs_sortable_fields = ( ! empty( $settings->acs_schema_fields_sortable ) ) ? array_map( 'trim', str_getcsv( str_replace( '-', '_', $settings->acs_schema_fields_sortable ) ) ) : array();
 
 	if ( ! empty ( $acs_schema_fields ) ) {
 		// If there are some custom fields
@@ -293,6 +294,10 @@ function acs_get_custom_index_fields() {
 			else if ( isset( $acs_double_fields ) && in_array( $acs_schema_field_clean, $acs_double_fields ) ) {
 				$acs_option_type_field = 'double';
 				$acs_option_key_field = 'DoubleOptions';
+			}
+			else if ( isset( $acs_date_fields ) && in_array( $acs_schema_field_clean, $acs_date_fields ) ) {
+				$acs_option_type_field = 'date';
+				$acs_option_key_field = 'DateOptions';
 			}
 			else if ( isset( $acs_literal_fields ) && in_array( $acs_schema_field_clean, $acs_literal_fields ) ) {
 				$acs_option_type_field = 'literal';

@@ -6,11 +6,11 @@ Author: Andrea Landonio
 Author URI: http://www.andrealandonio.it
 Text Domain: cloud-search
 Domain Path: /languages/
-Version: 2.8.0
+Version: 2.8.1
 License: GPL v3
 
 CloudSearch
-Copyright (C) 2013-2019, Andrea Landonio - landonio.andrea@gmail.com
+Copyright (C) 2013-2020, Andrea Landonio - landonio.andrea@gmail.com
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -94,6 +94,7 @@ function acs_activation() {
         $settings->acs_filter_text_length_type = ACS::SEARCH_TEXT_LENGTH_TYPE;
 		$settings->acs_schema_fields_int = '';
 		$settings->acs_schema_fields_double = '';
+		$settings->acs_schema_fields_date = '';
 		$settings->acs_schema_fields_literal = '';
 		$settings->acs_schema_fields_sortable = '';
 		$settings->acs_schema_fields_prefix = '';

@@ -3,7 +3,7 @@
 **Tags:** aws, amazon, cloud, search, research, CloudSearch, cs, suggest, facet  
 **Requires at least:** 4.4  
 **Tested up to:** 5.3  
-**Stable tag:** 2.8.0  
+**Stable tag:** 2.8.1  
 **License:** GPLv3  
 **License URI:** http://www.gnu.org/licenses/gpl.html  
 
@@ -101,6 +101,10 @@ Yes, you can manage WooCommerce product tags and EDD tags simply adding a little
 
 
 ## Changelog ##
+
+### 2.8.1 - 2020-01-05 ###
+* Added support for Date types
+* Fixed undefined index for TextOptions
 
 ### 2.8.0 - 2019-12-27 ###
 * Added REST API route for suggestion service
