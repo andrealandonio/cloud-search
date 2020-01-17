@@ -3,7 +3,7 @@ Contributors: lando1982, sburdett, methnen, bheadrick
 Tags: aws, amazon, cloud, search, research, CloudSearch, cs, suggest, facet
 Requires at least: 4.4
 Tested up to: 5.3
-Stable tag: 2.8.2
+Stable tag: 2.8.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -92,7 +92,7 @@ Yes, you can manage WooCommerce product tags and EDD tags simply adding a little
 
 == Changelog ==
 
-= 2.8.2 - 2020-01-17 =
+= 2.8.3 - 2020-01-17 =
 * Simplified "acs_check_user_capabilities" method by checking only "activate_plugins" capability
 
 = 2.8.1 - 2020-01-05 =

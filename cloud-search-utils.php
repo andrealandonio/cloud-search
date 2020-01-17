@@ -64,12 +64,9 @@ function acs_check_user_capabilities() {
 		}
 	}
 	else {
-		// Don't allow if user doesn't have plugin management privileges
-		$caps = array( 'activate_plugins', 'update_plugins', 'install_plugins' );
-		foreach ( $caps as $cap ) {
-			if ( ! current_user_can( $cap ) ) {
-				return false;
-			}
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+            // Don't allow if user doesn't have plugin management privileges
+            return false;
 		}
 	}
 
