@@ -71,7 +71,7 @@ function acs_retrieve_suggestions( $keyword ) {
  * @return array
  */
 function acs_route_get_suggestions( $request ) {
-	$keyword = $request->get_param( 'k' );
+	$keyword = $request->get_param( 'keyword' );
 	list( $settings, $results ) = acs_retrieve_suggestions( $keyword );
 	return array(
 		'results' => array_slice( $results, 0, $settings->acs_suggest_results )
