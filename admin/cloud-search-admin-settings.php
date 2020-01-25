@@ -785,28 +785,16 @@ function acs_manage_menu_page_settings_actions() {
 				$settings->acs_frontpage_content_box_value = str_replace( '.PHP', '', $settings->acs_frontpage_content_box_value );
 				$settings->acs_results_no_results_box_value = str_replace( '.PHP', '', $settings->acs_results_no_results_box_value );
 
-				$acs_schema_types = wp_kses_post( $_POST['acs_schema_types'] );
-				if ( $acs_schema_types == null ) {
-					$acs_schema_types = array();
-				}
+				$acs_schema_types = ! empty( $_POST[ 'acs_schema_types' ] ) ? $_POST[ 'acs_schema_types' ] : array();
 				$settings->acs_schema_types = implode( ACS::SEPARATOR, $acs_schema_types );
 
-				$acs_schema_fields = ( ! empty( $_POST['acs_schema_fields'] ) ) ? wp_kses_post( $_POST['acs_schema_fields'] ) : null;
-				if ( $acs_schema_fields == null ) {
-					$acs_schema_fields = array();
-				}
+				$acs_schema_fields = ! empty( $_POST[ 'acs_schema_fields' ] ) ? $_POST[ 'acs_schema_fields' ] : array();
 				$settings->acs_schema_fields = implode( ACS::SEPARATOR, $acs_schema_fields );
 
-				$acs_schema_taxonomies = ( ! empty( $_POST['acs_schema_taxonomies'] ) ) ? wp_kses_post( $_POST['acs_schema_taxonomies'] ) : null;
-				if ( $acs_schema_taxonomies == null ) {
-					$acs_schema_taxonomies = array();
-				}
+				$acs_schema_taxonomies = ! empty( $_POST[ 'acs_schema_taxonomies' ] ) ? $_POST[ 'acs_schema_taxonomies' ] : array();
 				$settings->acs_schema_taxonomies = implode( ACS::SEPARATOR, $acs_schema_taxonomies );
 
-				$acs_schema_searchable_taxonomies = ( ! empty( $_POST['acs_schema_searchable_taxonomies'] ) ) ? wp_kses_post( $_POST['acs_schema_searchable_taxonomies'] ) : null;
-				if ( $acs_schema_searchable_taxonomies == null ) {
-					$acs_schema_searchable_taxonomies = array();
-				}
+				$acs_schema_searchable_taxonomies = ! empty( $_POST[ 'acs_schema_searchable_taxonomies' ] ) ? $_POST[ 'acs_schema_searchable_taxonomies' ] : array();
 				$settings->acs_schema_searchable_taxonomies = implode( ACS::SEPARATOR, $acs_schema_searchable_taxonomies );
 
 				// Save option on database
