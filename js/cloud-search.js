@@ -101,7 +101,7 @@ ACS = {
                 }
                 else {
                     // No results found
-                    jQuery(ACS.params.container_result_items).append(result.data.message);
+                    jQuery(ACS.params.container_result_items).append(result.data.items);
 
                     // Add 'no_results' CSS class
                     jQuery(ACS.params.container_result_items).addClass('no_results');
