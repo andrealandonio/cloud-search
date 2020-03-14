@@ -3,7 +3,7 @@
 **Tags:** aws, amazon, cloud, search, research, CloudSearch, cs, suggest, facet  
 **Requires at least:** 4.4  
 **Tested up to:** 5.3  
-**Stable tag:** 2.8.5  
+**Stable tag:** 2.8.6  
 **License:** GPLv3  
 **License URI:** http://www.gnu.org/licenses/gpl.html  
 
@@ -101,6 +101,9 @@ Yes, you can manage WooCommerce product tags and EDD tags simply adding a little
 
 
 ## Changelog ##
+
+### 2.8.6 - 2020-03-14 ###
+* Updated "jquery-ui-1.9.2.custom.min.js" path in the enqueue scripts function
 
 ### 2.8.5 - 2020-03-10 ###
 * Changed no results found JS response
