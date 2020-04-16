@@ -690,8 +690,11 @@ function acs_get_filter_query( $global_search = false, $type_field = ACS::TYPE_F
 		$filter_query = $filter_query . ' post_type:\'category\'';
 	}
 
+	// Retrieve filter query extra conditions
+	$extra_conditions = apply_filters( 'acs_add_filter_query_conditions', '', null );
+
 	// Prepare default filter query suffix
-    $filter_query = $filter_query . ')';
+    $filter_query = $filter_query . ( ! empty( $extra_conditions ) ? ( ' ' . $extra_conditions ) : '' ) . ')';
 
     if ( $type_field != 'all' ) {
         // Query field type items

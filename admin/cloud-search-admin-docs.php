@@ -87,6 +87,20 @@ function acs_menu_page_docs() {
                                 add_filter( 'acs_post_transition_allowed_statuses', 'manage_post_transition_allowed_statuses', 10, 1 );
                             </pre>
 
+                            <h4><?php _e( 'Add filter query conditions', ACS::PREFIX ) ?></h4>
+                            <p><?php _e( 'Using this filter you can add some filter query conditions for filtering additional fields not covered in configuration.', ACS::PREFIX ) ?></p>
+                            acs_add_filter_query_conditions
+                            <pre>
+                                /**
+                                 * Add filter query conditions to search
+                                 */
+                                function add_filter_query_conditions( $extra_conditions ) {
+                                &nbsp;&nbsp;$extra_conditions = "(not my_custom_field:'my-custom-value')";
+                                &nbsp;&nbsp;return $extra_conditions;
+                                };
+                                add_filter( 'acs_add_filter_query_conditions', 'add_filter_query_conditions', 10, 1 );
+                            </pre>
+
                             <h4><?php _e( 'Enabling filters for WooCommerce product tags and EDD tags', ACS::PREFIX ) ?></h4>
                             <p><?php _e( 'If you want to enable plugin filters for WooCommerce product tags and EDD tags (not categories), just put the following code in a custom plugin or in the functions.php of your theme.', ACS::PREFIX ) ?></p>
 
