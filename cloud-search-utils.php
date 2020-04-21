@@ -659,17 +659,19 @@ function acs_get_filter_query( $global_search = false, $type_field = ACS::TYPE_F
 	$acs_schema_searchable_taxonomies = $acs_schema_searchable_taxonomies ? explode( ACS::SEPARATOR, $acs_schema_searchable_taxonomies ) : array();
 
 	// Get legacy post types
-	$acs_schema_fields_legacy_types = $settings->acs_schema_fields_legacy_types;
-	$acs_schema_fields_legacy_types = $acs_schema_fields_legacy_types ? explode( ACS::SEPARATOR, $acs_schema_fields_legacy_types ) : array();
+    if ( isset( $settings->acs_schema_fields_legacy_types ) && ! empty( $settings->acs_schema_fields_legacy_types ) ) {
+	    $acs_schema_fields_legacy_types = $settings->acs_schema_fields_legacy_types;
+	    $acs_schema_fields_legacy_types = $acs_schema_fields_legacy_types ? explode( ACS::SEPARATOR, $acs_schema_fields_legacy_types ) : array();
 
-	// Prepare default filter query prefix adding schema types and legacy post types (if provided)
-	$filter_query = $filter_query . ' (or ';
-	foreach ( $acs_schema_fields_legacy_types as $legacy_type ) {
-		$filter_query .= ' post_type:\'' . $legacy_type . '\'';
-	}
-	foreach ( explode( ',', $settings->acs_schema_types ) as $type ) {
-		$filter_query .= ' post_type:\'' . $type . '\'';
-	}
+	    // Prepare default filter query prefix adding schema types and legacy post types (if provided)
+	    $filter_query = $filter_query . ' (or ';
+	    foreach ( $acs_schema_fields_legacy_types as $legacy_type ) {
+		    $filter_query .= ' post_type:\'' . $legacy_type . '\'';
+	    }
+	    foreach ( explode( ',', $settings->acs_schema_types ) as $type ) {
+		    $filter_query .= ' post_type:\'' . $type . '\'';
+	    }
+    }
 
 	// Loop site taxonomies
     if ( ! empty( $site_taxonomy_types ) ) {
@@ -692,30 +694,31 @@ function acs_get_filter_query( $global_search = false, $type_field = ACS::TYPE_F
 
 	// Retrieve filter query extra conditions
 	$extra_conditions = apply_filters( 'acs_add_filter_query_conditions', '', null );
+    $extra_conditions = ( ! empty( $extra_conditions ) ? ( ' ' . $extra_conditions ) : '' );
 
 	// Prepare default filter query suffix
-    $filter_query = $filter_query . ( ! empty( $extra_conditions ) ? ( ' ' . $extra_conditions ) : '' ) . ')';
+	$filter_query = $filter_query . ')';
 
     if ( $type_field != 'all' ) {
         // Query field type items
         if ( $global_search ) {
             // Do not filter site and blog
-            return '(and (not site_id:-1) (not blog_id:-1) post_type:\'' . $type_field . '\' ' . ( ( ! empty( $filter_query ) ) ? $filter_query : '' ) . ')';
+            return '(and (not site_id:-1) (not blog_id:-1) post_type:\'' . $type_field . '\' ' . ( ( ! empty( $filter_query ) ) ? $filter_query : '' ) . $extra_conditions . ')';
         }
         else {
             // Filter site and blog
-            return '(and site_id:' . acs_get_site_id() . ' blog_id:' . acs_get_blog_id() . ' post_type:\'' . $type_field . '\' ' . ( ( ! empty( $filter_query ) ) ? $filter_query : '' ) . ')';
+            return '(and site_id:' . acs_get_site_id() . ' blog_id:' . acs_get_blog_id() . ' post_type:\'' . $type_field . '\' ' . ( ( ! empty( $filter_query ) ) ? $filter_query : '' ) . $extra_conditions . ')';
         }
     }
     else {
         // Query all items
         if ( $global_search ) {
             // Do not filter site and blog
-            return '(and (not site_id:-1) (not blog_id:-1) ' . ( ( ! empty( $filter_query ) ) ? $filter_query : '' ) . ')';
+            return '(and (not site_id:-1) (not blog_id:-1) ' . ( ( ! empty( $filter_query ) ) ? $filter_query : '' ) . $extra_conditions . ')';
         }
         else {
             // Filter site and blog
-            return '(and site_id:' . acs_get_site_id() . ' blog_id:' . acs_get_blog_id() . ' ' . ( ( ! empty( $filter_query ) ) ? $filter_query : '' ) . ')';
+            return '(and site_id:' . acs_get_site_id() . ' blog_id:' . acs_get_blog_id() . ' ' . ( ( ! empty( $filter_query ) ) ? $filter_query : '' ) . $extra_conditions . ')';
         }
     }
 }

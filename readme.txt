@@ -3,7 +3,7 @@ Contributors: lando1982, sburdett, methnen, bheadrick
 Tags: aws, amazon, cloud, search, research, CloudSearch, cs, suggest, facet
 Requires at least: 4.4
 Tested up to: 5.4
-Stable tag: 2.9.0
+Stable tag: 2.9.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -91,6 +91,9 @@ Yes, you can manage WooCommerce product tags and EDD tags simply adding a little
 5. Other settings (suggestions)
 
 == Changelog ==
+
+= 2.9.1 - 2020-04-21 =
+* Move "acs_add_filter_query_conditions" filter hook apply position to a "larger" one
 
 = 2.9.0 - 2020-04-16 =
 * Added "acs_add_filter_query_conditions" filter hook
