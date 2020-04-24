@@ -34,11 +34,16 @@ function acs_perform_search_documents( $search_templates_directory, $global_sear
     $keyword = stripslashes( $_GET[ 'keyword' ] );
 	$start = filter_var ( $_GET[ 'start' ], FILTER_SANITIZE_NUMBER_INT );
 	$size = filter_var ( $_GET[ 'size' ], FILTER_SANITIZE_NUMBER_INT );
-    $filter_query = stripslashes( $_GET[ 'filter_query' ] );
+
+	$filter_query = ( isset( $_GET[ 'filter_query' ] ) ) ? stripslashes( $_GET[ 'filter_query' ] ) : '';
+	//$filter_query = stripslashes( $_GET[ 'filter_query' ] );
+
 	$type_field = filter_var ( $_GET[ 'type_field' ], FILTER_SANITIZE_STRING );
     $sort_field = filter_var ( $_GET[ 'sort_field' ], FILTER_SANITIZE_STRING );
     $sort_order = filter_var ( $_GET[ 'sort_order' ], FILTER_SANITIZE_STRING );
-    $extras = $_GET[ 'extras' ];
+
+	$extras = ( isset( $_GET[ 'extras' ] ) ) ?  $_GET[ 'extras' ] : '';
+    //$extras = $_GET[ 'extras' ];
 
     // Sanitize fields
     $type_field = ( ! empty ( $type_field ) ) ? $type_field : ACS::TYPE_FIELD_DEFAULT;
@@ -295,16 +300,16 @@ function acs_index_documents_search( $key, $key_type, $start = 0, $size = ACS::S
 			// Preserve text if you don't want to alter title/content/excerpt (typically when use "acs_index_documents_search" not in searches)
 			if ( ! $preserve_text ) {
 				// Strip item texts shortcodes
-				if ( isset( $item[ 'fields' ][ 'post_content' ][ 0 ] ) ) $item[ 'fields' ][ 'post_content' ][ 0 ] = strip_shortcodes( $item[ 'fields' ][ 'post_content' ][ 0 ] );
-				if ( isset( $item[ 'fields' ][ 'post_excerpt' ][ 0 ] ) ) $item[ 'fields' ][ 'post_excerpt' ][ 0 ] = strip_shortcodes( $item[ 'fields' ][ 'post_excerpt' ][ 0 ] );
+				if ( isset( $item[ 'fields' ][ 'post_content' ] ) && isset( $item[ 'fields' ][ 'post_content' ][ 0 ] ) ) $item[ 'fields' ][ 'post_content' ][ 0 ] = strip_shortcodes( $item[ 'fields' ][ 'post_content' ][ 0 ] );
+				if ( isset( $item[ 'fields' ][ 'post_excerpt' ] ) && isset( $item[ 'fields' ][ 'post_excerpt' ][ 0 ] ) ) $item[ 'fields' ][ 'post_excerpt' ][ 0 ] = strip_shortcodes( $item[ 'fields' ][ 'post_excerpt' ][ 0 ] );
 
 				// Truncate item text
-				if ( isset( $item[ 'fields' ][ 'post_content' ][ 0 ] ) ) $item[ 'fields' ][ 'post_content' ][ 0 ] = acs_truncate( $item[ 'fields' ][ 'post_content' ][ 0 ] );
+				if ( isset( $item[ 'fields' ][ 'post_content' ] ) && isset( $item[ 'fields' ][ 'post_content' ][ 0 ] ) ) $item[ 'fields' ][ 'post_content' ][ 0 ] = acs_truncate( $item[ 'fields' ][ 'post_content' ][ 0 ] );
 
 				// Highlight item text and title
 				if ( $key != '*') {
-					if ( isset( $item[ 'fields' ][ 'post_content' ][ 0 ] ) ) $item[ 'fields' ][ 'post_content' ][ 0 ] = acs_highlight_text( $item[ 'fields' ][ 'post_content' ][ 0 ], $key );
-					if ( isset( $item[ 'fields' ][ 'post_title' ][ 0 ] ) ) $item[ 'fields' ][ 'post_title' ][ 0 ] = acs_highlight_title( $item[ 'fields' ][ 'post_title' ][ 0 ], $key );
+					if ( isset( $item[ 'fields' ][ 'post_content' ] ) && isset( $item[ 'fields' ][ 'post_content' ][ 0 ] ) ) $item[ 'fields' ][ 'post_content' ][ 0 ] = acs_highlight_text( $item[ 'fields' ][ 'post_content' ][ 0 ], $key );
+					if ( isset( $item[ 'fields' ][ 'post_title' ] ) && isset( $item[ 'fields' ][ 'post_title' ][ 0 ] ) ) $item[ 'fields' ][ 'post_title' ][ 0 ] = acs_highlight_title( $item[ 'fields' ][ 'post_title' ][ 0 ], $key );
 				}
 			}
 
