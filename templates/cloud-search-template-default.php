@@ -54,7 +54,7 @@ $current_theme = wp_get_theme();
         </div>
         <div class="acs_search_results_status">
             <div class="ajax-loader" style="display: none;">
-                <img src="<?php echo admin_url() . '/images/loading.gif' ?>" width="16" height="16" />
+                <img src="<?php echo '/wp-admin/images/loading.gif' ?>" width="16" height="16" />
             </div>
 
             <span class="load_more" style="visibility: hidden;"><?php echo ACS::get_instance()->get_settings()->acs_results_load_more_msg ?></span>
