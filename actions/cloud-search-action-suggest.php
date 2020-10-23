@@ -73,9 +73,18 @@ function acs_retrieve_suggestions( $keyword ) {
 function acs_route_get_suggestions( $request ) {
 	$keyword = $request->get_param( 'keyword' );
 	list( $settings, $results ) = acs_retrieve_suggestions( $keyword );
-	return array(
-		'results' => array_slice( $results, 0, $settings->acs_suggest_results )
-	);
+
+  // Check if needs AMP items
+  if ( isset( $_GET[ 'amp' ] ) ) {
+    return array(
+      'items' => array_slice( $results, 0, $settings->acs_suggest_results )
+    );
+  } 
+  else {
+    return array(
+      'results' => array_slice( $results, 0, $settings->acs_suggest_results )
+    );
+  }
 }
 
 /**
@@ -90,13 +99,13 @@ function acs_route_get_suggestions( $request ) {
  * @return ACS_Result
  */
 function acs_index_documents_suggest( $key, $start = 0, $size = ACS::SUGGEST_DEFAULT_RESULTS, $query_parser = ACS::QUERY_PARSER, $filter_query = '' ) {
-    // Get client
-    $client = acs_get_domain_client();
+  // Get client
+  $client = acs_get_domain_client();
 
-    // Get settings option
-    $settings = ACS::get_instance()->get_settings();
+  // Get settings option
+  $settings = ACS::get_instance()->get_settings();
 
-    // Prepare query
+  // Prepare query
 	if ( $settings->acs_suggest_only_title == 1 ) {
 		// Search only in post title
 		$query = 'post_title' . ':' . $key . '*';
@@ -106,58 +115,58 @@ function acs_index_documents_suggest( $key, $start = 0, $size = ACS::SUGGEST_DEF
 		$query = $key . '*';
 	}
 
-    // Prepare sort (search only in post title)
-    switch ( $settings->acs_suggest_order ) {
-        case ACS::SUGGEST_ORDER_TYPE_3: {
-            // Alphabetically reverse
-            $sort = 'post_title desc';
-            break;
-        }
-        case ACS::SUGGEST_ORDER_TYPE_2: {
-            // Alphabetically
-            $sort = 'post_title asc';
-            break;
-        }
-        default: {
-            // Score
-            $sort = ACS::SORT_FIELD_DEFAULT . ' ' . ACS::SORT_ORDER_DEFAULT;
-            break;
-        }
+  // Prepare sort (search only in post title)
+  switch ( $settings->acs_suggest_order ) {
+    case ACS::SUGGEST_ORDER_TYPE_3: {
+      // Alphabetically reverse
+      $sort = 'post_title desc';
+      break;
     }
-
-    // Search documents
-    $result = $client->search( array(
-        'query' => $query,
-        'start' => intval( $start ),
-        'size' => intval( $size ),
-        'filterQuery' => acs_get_filter_query( false, ACS::TYPE_FIELD_DEFAULT, $filter_query ),
-        'queryParser' => $query_parser,
-        'sort' => $sort
-    ) );
-
-    // Read result
-    $hit_found = $result->getPath( 'hits/found' ); // Total items
-    $items = $result->getPath( 'hits' ); // Items array
-
-    $post_items = null;
-    if ( count( $items[ 'hit' ] ) > 0 ) {
-        foreach ( $items[ 'hit' ] as $item)  {
-            $post_items[ $item[ 'fields' ][ 'id' ][ 0 ] ] = array(
-                'title' => $item[ 'fields' ][ 'post_title' ][ 0 ],
-                'url' => $item[ 'fields' ][ 'post_url' ][ 0 ]
-            );
-        }
+    case ACS::SUGGEST_ORDER_TYPE_2: {
+      // Alphabetically
+      $sort = 'post_title asc';
+      break;
     }
+    default: {
+      // Score
+      $sort = ACS::SORT_FIELD_DEFAULT . ' ' . ACS::SORT_ORDER_DEFAULT;
+      break;
+    }
+  }
 
-    // Prepare result object
-    $acs_result = new ACS_Result();
-    $acs_result->set_data( array(
-        'start' => intval( $start ),
-        'size' => intval( $size ),
-        'found' => $hit_found,
-        'items' => $post_items
-    ) );
+  // Search documents
+  $result = $client->search( array(
+    'query' => $query,
+    'start' => intval( $start ),
+    'size' => intval( $size ),
+    'filterQuery' => acs_get_filter_query( false, ACS::TYPE_FIELD_DEFAULT, $filter_query ),
+    'queryParser' => $query_parser,
+    'sort' => $sort
+  ) );
 
-    // Return result object
-    return $acs_result;
+  // Read result
+  $hit_found = $result->getPath( 'hits/found' ); // Total items
+  $items = $result->getPath( 'hits' ); // Items array
+
+  $post_items = null;
+  if ( count( $items[ 'hit' ] ) > 0 ) {
+    foreach ( $items[ 'hit' ] as $item)  {
+      $post_items[ $item[ 'fields' ][ 'id' ][ 0 ] ] = array(
+        'title' => $item[ 'fields' ][ 'post_title' ][ 0 ],
+        'url' => $item[ 'fields' ][ 'post_url' ][ 0 ]
+      );
+    }
+  }
+
+  // Prepare result object
+  $acs_result = new ACS_Result();
+  $acs_result->set_data( array(
+    'start' => intval( $start ),
+    'size' => intval( $size ),
+    'found' => $hit_found,
+    'items' => $post_items
+  ) );
+
+  // Return result object
+  return $acs_result;
 }

@@ -371,6 +371,12 @@ function acs_menu_page_docs() {
                             <span>/wp-json/cloud-search/v1/suggest?keyword=test</span>
                             <p><?php _e( 'This service provides to you a list of suggested items, retrieved from the provided input keyword. This API is also used for the suggestion feature in the templates.', ACS::PREFIX ) ?></p>
 
+                            <span>/wp-json/cloud-search/v1/results?keyword=test&start=0&size=10</span>
+                            <p><?php _e( 'This service provides to you a way for searching items, retrieved from the provided input keyword.', ACS::PREFIX ) ?></p>
+
+                            <h4><?php _e( 'Work with AMP', ACS::PREFIX ) ?></h4>
+                            <p><?php _e( 'AMP pages actually supports autocomplete, but need that the results array have to be in a different format. A top level key as "items" is needed, otherwise with "results" as top level key it doesn\'t work. For enabling AMP new top level key within results you have to provide an "amp" parameter to the API.', ACS::PREFIX ) ?></p>
+
                             <h4><?php _e( 'How to write your custom script', ACS::PREFIX ) ?></h4>
                             <p><?php _e( 'The built-in search page uses jQuery to initialize search engine. As you can see in the following code, the page provides some values to a ACS init function that manages the bootstrap and manages every search and pagination features. The "init" function parameters are: "keyword", "start and "size" already explained in the "acs_api_search" API, "type_field", "sort_field" and "sort_order" that represent the filter element IDs and "container_result_items", "container_ajax_loader" and "container_load_more" that represent the element IDs where you want to put the result items, the page loader and the load more message.', ACS::PREFIX ) ?></p>
 

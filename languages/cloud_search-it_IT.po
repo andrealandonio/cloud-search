@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Amazon CloudSearch\n"
-"POT-Creation-Date: 2020-04-15 20:25+0200\n"
-"PO-Revision-Date: 2020-04-15 20:26+0200\n"
+"POT-Creation-Date: 2020-10-23 21:55+0200\n"
+"PO-Revision-Date: 2020-10-23 21:55+0200\n"
 "Last-Translator: Andrea Landonio <landonio.andrea@gmail.com>\n"
 "Language-Team: Andrea Landonio <landonio.andrea@gmail.com>\n"
 "Language: it_IT\n"
@@ -78,7 +78,7 @@ msgstr ""
 
 #: admin/cloud-search-admin-docs.php:56 admin/cloud-search-admin-docs.php:178
 #: admin/cloud-search-admin-docs.php:294 admin/cloud-search-admin-docs.php:346
-#: admin/cloud-search-admin-docs.php:481
+#: admin/cloud-search-admin-docs.php:487
 msgid "Overview"
 msgstr "Panoramica"
 
@@ -635,11 +635,38 @@ msgstr ""
 "chiave fornita in input. Questa API viene utilizzata anche per la funzione "
 "di suggerimento nei templates."
 
-#: admin/cloud-search-admin-docs.php:374
+#: admin/cloud-search-admin-docs.php:375
+msgid ""
+"This service provides to you a way for searching items, retrieved from the "
+"provided input keyword."
+msgstr ""
+"Questo servizio permette di cercare dati, recuperati tramite la parola "
+"chiave fornita in input."
+
+#: admin/cloud-search-admin-docs.php:377
+msgid "Work with AMP"
+msgstr "Lavorare con AMP"
+
+#: admin/cloud-search-admin-docs.php:378
+msgid ""
+"AMP pages actually supports autocomplete, but need that the results array "
+"have to be in a different format. A top level key as \"items\" is needed, "
+"otherwise with \"results\" as top level key it doesn't work. For enabling "
+"AMP new top level key within results you have to provide an \"amp\" "
+"parameter to the API."
+msgstr ""
+"Le pagine AMP supportano il completamento automatico, ma è necessario che "
+"l'array dei risultati sia in un formato diverso. È necessario avere come "
+"chiave dell'array dei risultati il valore \"items\", altrimenti il valore di "
+"default \"results\", AMP non può gestire i dati. Per abilitare l'utilizzo "
+"della chiave 'items' all'interno dei risultati, è necessario passare un "
+"parametro \"amp\" all'API."
+
+#: admin/cloud-search-admin-docs.php:380
 msgid "How to write your custom script"
 msgstr "Come scrivere il vostro script"
 
-#: admin/cloud-search-admin-docs.php:375
+#: admin/cloud-search-admin-docs.php:381
 msgid ""
 "The built-in search page uses jQuery to initialize search engine. As you can "
 "see in the following code, the page provides some values to a ACS init "
@@ -663,7 +690,7 @@ msgstr ""
 "IDs degli elementi HTML in cui si desidera inserire i risultati, il loader "
 "di caricamento e il messaggio di \"Carica altri\"."
 
-#: admin/cloud-search-admin-docs.php:395
+#: admin/cloud-search-admin-docs.php:401
 msgid ""
 "If you do not want to use jQuery or you need to change the script behavior, "
 "you can try to write your custom script code (with your preferred library or "
@@ -674,7 +701,7 @@ msgstr ""
 "dello script personalizzato (con la vostra libreria o framework preferito) e "
 "potrebbe essere simile a:"
 
-#: admin/cloud-search-admin-docs.php:425
+#: admin/cloud-search-admin-docs.php:431
 msgid ""
 "Where \"type_field\" could be \"all\" for searching in all the fields or a "
 "specific field name, \"sort_field\" could be \"_score\", \"post_date_gmt\", "
@@ -708,11 +735,11 @@ msgstr ""
 "stesso numero di elementi la clausola di ordinamento verrà composto con più "
 "valori."
 
-#: admin/cloud-search-admin-docs.php:426
+#: admin/cloud-search-admin-docs.php:432
 msgid "The API response looks like (JSON format):"
 msgstr "La risposta di un API (formato JSON) è del tipo:"
 
-#: admin/cloud-search-admin-docs.php:446
+#: admin/cloud-search-admin-docs.php:452
 msgid ""
 "Where \"code\" and \"message\" represent a feedback of the operation (e.g. "
 "\"ok\" or \"error\"), \"actions\" contains the actions performed (in the "
@@ -733,11 +760,11 @@ msgstr ""
 "gestire l'impaginazione, il messaggio \"Nessun risultato\" e la funzionalità "
 "del \"Carica altri\"."
 
-#: admin/cloud-search-admin-docs.php:448
+#: admin/cloud-search-admin-docs.php:454
 msgid "What's new with terms?"
 msgstr "Cosa c'è di nuovo coi term?"
 
-#: admin/cloud-search-admin-docs.php:449
+#: admin/cloud-search-admin-docs.php:455
 msgid ""
 "Added support for terms, the APIs results change not returning an IDs array "
 "but an object array (with ID and type fields)."
@@ -745,11 +772,11 @@ msgstr ""
 "Aggiunto il supporto per i terms, i risultati delle API cambiano non "
 "restituendo un array di IDs ma un array di oggetti (con campi ID e tipo)."
 
-#: admin/cloud-search-admin-docs.php:450
+#: admin/cloud-search-admin-docs.php:456
 msgid "The \"acs_api_search\" API JSON response change from an array of IDs"
 msgstr "La risposta JSON dell'API \"acs_api_search\" cambia da un array di IDs"
 
-#: admin/cloud-search-admin-docs.php:459
+#: admin/cloud-search-admin-docs.php:465
 msgid ""
 "to an array of object composed by the entity ID and the entity type (\"post"
 "\" or \"term\")"
@@ -757,7 +784,7 @@ msgstr ""
 "ad un array di oggetti composti dall'ID e dal tipo dell'entità (\"post\" o "
 "\"term\")"
 
-#: admin/cloud-search-admin-docs.php:474
+#: admin/cloud-search-admin-docs.php:480
 msgid ""
 "The \"acs_api_search_full\" API JSON response does not change. It contains "
 "an array of object that represent the results."
@@ -765,7 +792,7 @@ msgstr ""
 "La risposta JSON dell'API \"acs_api_search\" non cambia. Contiene un array "
 "di oggetto che rappresenta i risultati."
 
-#: admin/cloud-search-admin-docs.php:482
+#: admin/cloud-search-admin-docs.php:488
 msgid ""
 "Generally all the classes of the plugin start with the \"acs\" prefix. You "
 "can override the plugin CSS rules adding to your theme's stylesheet the "
@@ -775,11 +802,11 @@ msgstr ""
 "possibile sovrascrivere le regole CSS aggiungendo al foglio di stile del "
 "proprio tema le seguenti regole, modificando quindi i valori predefiniti:"
 
-#: admin/cloud-search-admin-docs.php:485
+#: admin/cloud-search-admin-docs.php:491
 msgid "Front page header rules"
 msgstr "Regole header pagina risultato ricerca"
 
-#: admin/cloud-search-admin-docs.php:486
+#: admin/cloud-search-admin-docs.php:492
 msgid ""
 "Changing this rules you can alter the search page header, especially, you "
 "can add custom rules for page title and subtitle. Usually the page title "
@@ -792,11 +819,11 @@ msgstr ""
 "titolo della pagina contiene la frase \"Hai cercato\" e il sottotitolo "
 "contiene il contatore del numero dei risultati di una ricerca."
 
-#: admin/cloud-search-admin-docs.php:495
+#: admin/cloud-search-admin-docs.php:501
 msgid "Front page filters rules"
 msgstr "Regole filtri pagina risultato ricerca"
 
-#: admin/cloud-search-admin-docs.php:496
+#: admin/cloud-search-admin-docs.php:502
 msgid ""
 "Changing this rules you can alter the search page filter section, you can "
 "change all about the filter dropdowns, the label style, the select input "
@@ -807,11 +834,11 @@ msgstr ""
 "lo stile dell'etichetta di ogni filtro, lo stile dei menu a tendina di ogni "
 "filtro e lo stile dell'intera sezione dei filtri."
 
-#: admin/cloud-search-admin-docs.php:508
+#: admin/cloud-search-admin-docs.php:514
 msgid "Front page results rules"
 msgstr "Regole elenco risultati pagina risultato ricerca"
 
-#: admin/cloud-search-admin-docs.php:509
+#: admin/cloud-search-admin-docs.php:515
 msgid ""
 "Changing this rules you can alter the search page results section, you can "
 "modify the \"no results\" and the \"load more\" containers, the result items "
@@ -823,11 +850,11 @@ msgstr ""
 "dimensione dell'immagine mostrata nei singoli risultati al vostro tema e lo "
 "stile dell'intera sezione dei risultati."
 
-#: admin/cloud-search-admin-docs.php:522
+#: admin/cloud-search-admin-docs.php:528
 msgid "Front page item result rules"
 msgstr "Regole singolo risultato pagina risultato ricerca"
 
-#: admin/cloud-search-admin-docs.php:523
+#: admin/cloud-search-admin-docs.php:529
 msgid ""
 "Changing this rules you can alter the search page item results layout. By "
 "default the plugin try to preserve the theme CSS rules, but overriding these "
@@ -847,11 +874,11 @@ msgstr ""
 "evidenza, il formato del post, la data del post, l'autore, la lista delle "
 "categorie e dei tags e il link ai commenti."
 
-#: admin/cloud-search-admin-docs.php:541
+#: admin/cloud-search-admin-docs.php:547
 msgid "Suggestions"
 msgstr "Suggerimenti"
 
-#: admin/cloud-search-admin-docs.php:542
+#: admin/cloud-search-admin-docs.php:548
 msgid ""
 "In order to customize the suggestions look & feel you can, if you need a "
 "simple customization, use the plugin settings configuration and change "
@@ -866,7 +893,7 @@ msgstr ""
 "seguenti regole CSS (semplicemente cambiando i valori e aggiungendo la "
 "clausola \"!important\")."
 
-#: admin/cloud-search-admin-docs.php:575
+#: admin/cloud-search-admin-docs.php:581
 msgid ""
 "Fields marked with (*) will be overridden with plugin settings (if "
 "configured)."
@@ -874,11 +901,11 @@ msgstr ""
 "I campi contrassegnati con (*) vengono sostituiti con le impostazioni del "
 "plugin (se configurate)."
 
-#: admin/cloud-search-admin-docs.php:583
+#: admin/cloud-search-admin-docs.php:589
 msgid "Customize load more with HTML"
 msgstr "Personalizza il messaggio di \"carica altri\" con un HTML"
 
-#: admin/cloud-search-admin-docs.php:584
+#: admin/cloud-search-admin-docs.php:590
 msgid ""
 "In the \"Setting\" section you have the opportunity to customize the \"load "
 "more\" message using a simple string, but you can also set an HTML snippet "
@@ -889,11 +916,11 @@ msgstr ""
 "impostare un frammento di HTML se si vuole personalizzare il \"loader\", ad "
 "esempio con:"
 
-#: admin/cloud-search-admin-docs.php:596
+#: admin/cloud-search-admin-docs.php:602
 msgid "Customize template for no results"
 msgstr "Personalizza il messaggio di \"nessun risultato\" con un template"
 
-#: admin/cloud-search-admin-docs.php:597
+#: admin/cloud-search-admin-docs.php:603
 msgid ""
 "In the \"Setting\" section you have the opportunity to customize the \"no "
 "results\" message using a simple string, but you can also set an HTML "
@@ -910,11 +937,11 @@ msgstr ""
 "la ricerca non produca articoli il template HTML sarà visualizzato "
 "all'interno del contenitore dei risultati."
 
-#: admin/cloud-search-admin-docs.php:599
+#: admin/cloud-search-admin-docs.php:605
 msgid "Plugin templates"
 msgstr "I templates del plugin"
 
-#: admin/cloud-search-admin-docs.php:601
+#: admin/cloud-search-admin-docs.php:607
 msgid ""
 "The plugin built-in template use a generic HTML optimized to fit in all the "
 "WordPress themes. If you are using a \"native\" WordPress theme, the plugin "
@@ -933,17 +960,17 @@ msgstr ""
 "del tema attivo, se si tratta di un tema \"nativo\" utilizzerà la versione "
 "ottimizzata per il tema , altrimenti utilizzerà l'HTML generico."
 
-#: admin/cloud-search-admin-docs.php:602
+#: admin/cloud-search-admin-docs.php:608
 msgid "The actual themes with an optimized template are:"
 msgstr "I temi attualmente con un template ottimizzato sono:"
 
-#: admin/cloud-search-admin-docs.php:615
+#: admin/cloud-search-admin-docs.php:621
 msgid "More about item image size and custom item image ID fields"
 msgstr ""
 "Altro sui campi nome taglio immagine personalizzato e ID immagine "
 "personalizzata"
 
-#: admin/cloud-search-admin-docs.php:617
+#: admin/cloud-search-admin-docs.php:623
 msgid ""
 "The \"Item image size name\" and \"Custom item image ID\" fields are an "
 "extra feature used for storing in the index an extra field with a post "
@@ -970,7 +997,7 @@ msgstr ""
 "caso la possibilità di leggere l'immagine del post definito da un ambiente "
 "esterno."
 
-#: admin/cloud-search-admin-docs.php:618
+#: admin/cloud-search-admin-docs.php:624
 msgid ""
 "To solve this problem the plugin stores an extra text field with the name "
 "\"post_image\" and every time you sync a post this field is filled with the "
@@ -996,7 +1023,7 @@ msgstr ""
 "Thumbnails\", è possibile memorizzare anche questo tipo di \"media\" "
 "nell'indice CloudSearch."
 
-#: admin/cloud-search-admin-docs.php:619
+#: admin/cloud-search-admin-docs.php:625
 msgid ""
 "PS: if a \"Custom item image ID\" is provided, the plugin will search the "
 "image using \"Multiple Post Thumbnails\" without reading the \"Item image "
@@ -1006,11 +1033,11 @@ msgstr ""
 "l'immagine utilizzando \"Multiple Post Thumbnails\", senza leggere il campo "
 "\"Nome taglio immagine personalizzato\"."
 
-#: admin/cloud-search-admin-docs.php:622
+#: admin/cloud-search-admin-docs.php:628
 msgid "Manipulate standard fields"
 msgstr "Manipolare i campi standard"
 
-#: admin/cloud-search-admin-docs.php:624
+#: admin/cloud-search-admin-docs.php:630
 msgid ""
 "You can manipulate standard fields (such as post_title, post_content, etc) "
 "adding in your sub-theme a filter named \"cloud_search_#POST_TYPE#_fields\" "
@@ -3542,12 +3569,12 @@ msgstr "Errore nel caricamento dei documenti"
 msgid "All"
 msgstr "Tutti"
 
-#: cloud-search-utils.php:823
+#: cloud-search-utils.php:828
 #: templates/cloud-search-content-twentyfifteen.php:81
 msgid "Featured"
 msgstr "In evidenza"
 
-#: cloud-search-utils.php:932
+#: cloud-search-utils.php:937
 #: templates/cloud-search-content-twentyfifteen.php:184
 #: templates/cloud-search-content-twentyseventeen.php:188
 #: templates/cloud-search-content-twentysixteen.php:181

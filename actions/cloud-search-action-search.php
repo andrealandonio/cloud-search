@@ -28,10 +28,10 @@ add_action( 'wp_ajax_nopriv_acs_search_documents_full', 'acs_search_documents_fu
  * @return mixed|string|void
  */
 function acs_perform_search_documents( $search_templates_directory, $global_search ) {
-    global $result_search;
+  global $result_search;
 
-	// Read data
-    $keyword = stripslashes( $_GET[ 'keyword' ] );
+  // Read data
+  $keyword = stripslashes( $_GET[ 'keyword' ] );
 	$start = filter_var ( $_GET[ 'start' ], FILTER_SANITIZE_NUMBER_INT );
 	$size = filter_var ( $_GET[ 'size' ], FILTER_SANITIZE_NUMBER_INT );
 
@@ -39,16 +39,16 @@ function acs_perform_search_documents( $search_templates_directory, $global_sear
 	//$filter_query = stripslashes( $_GET[ 'filter_query' ] );
 
 	$type_field = filter_var ( $_GET[ 'type_field' ], FILTER_SANITIZE_STRING );
-    $sort_field = filter_var ( $_GET[ 'sort_field' ], FILTER_SANITIZE_STRING );
-    $sort_order = filter_var ( $_GET[ 'sort_order' ], FILTER_SANITIZE_STRING );
+  $sort_field = filter_var ( $_GET[ 'sort_field' ], FILTER_SANITIZE_STRING );
+  $sort_order = filter_var ( $_GET[ 'sort_order' ], FILTER_SANITIZE_STRING );
 
 	$extras = ( isset( $_GET[ 'extras' ] ) ) ?  $_GET[ 'extras' ] : '';
-    //$extras = $_GET[ 'extras' ];
+  //$extras = $_GET[ 'extras' ];
 
-    // Sanitize fields
-    $type_field = ( ! empty ( $type_field ) ) ? $type_field : ACS::TYPE_FIELD_DEFAULT;
-    $sort_field = ( ! empty ( $sort_field ) ) ? $sort_field : ACS::SORT_FIELD_DEFAULT;
-    $sort_order = ( ! empty ( $sort_order ) ) ? $sort_order : ACS::SORT_ORDER_DEFAULT;
+  // Sanitize fields
+  $type_field = ( ! empty ( $type_field ) ) ? $type_field : ACS::TYPE_FIELD_DEFAULT;
+  $sort_field = ( ! empty ( $sort_field ) ) ? $sort_field : ACS::SORT_FIELD_DEFAULT;
+  $sort_order = ( ! empty ( $sort_order ) ) ? $sort_order : ACS::SORT_ORDER_DEFAULT;
 
 	try {
 		// Search data
@@ -68,18 +68,22 @@ function acs_perform_search_documents( $search_templates_directory, $global_sear
 	// Turn on output buffering
 	ob_start();
 
+  // Check if needs AMP items
+  $amp = isset( $_GET[ 'amp' ] );
+  $items = [];
+
 	if ( ! empty( $result_search ) && count( $result_search[ 'items' ] ) > 0 ) {
-        global $post, $is_post_item, $term, $is_term_item, $result_search_item;
+    global $post, $is_post_item, $term, $is_term_item, $result_search_item;
 
 		// Get current theme
 		$current_theme = wp_get_theme();
 
 		// Documents founded, loop result items
 		foreach ( $result_search[ 'items' ] as $post_item ) {
-            $result_search_item = $post_item;
-            if ( ! empty( $extras ) ) $result_search_item[ 'extras' ] = $extras;
+      $result_search_item = $post_item;
+      if ( ! empty( $extras ) ) $result_search_item[ 'extras' ] = $extras;
 
-            // Setup current item
+      // Setup current item
 			if ( $post_item[ 'type' ] === ACS::TERM_KEY_SUFFIX ) {
 				// Current item like a term
 				$term = get_term( ( is_array( $result_search_item[ 'id' ] ) ) ? $result_search_item[ 'id' ][ 0 ] : intval( $result_search_item[ 'id' ] ) );
@@ -115,80 +119,89 @@ function acs_perform_search_documents( $search_templates_directory, $global_sear
 				$is_term_item = false;
 			}
 
-            switch ( $acs_frontpage_content_box_type ) {
-				case 'custom':
-					get_template_part( $acs_frontpage_content_box_value );
-					break;
-				case 'format':
-					if ( empty ( $acs_frontpage_content_box_value ) ) $acs_frontpage_content_box_value = 'content';
-
-					// Retrieve post type
-                    if ( $type === 'post' ) {
-						// Retrieve post type
-						$format = get_post_format();
-						if ( $format !== false ) {
-							// Use format content box
-                            get_template_part( $acs_frontpage_content_box_value, $format );
-						}
-						else {
-							// Use default content box
-                            get_template_part( $acs_frontpage_content_box_value );
-						}
-					}
-					else {
-						// Use type content box
-						get_template_part( $acs_frontpage_content_box_value, $type );
-					}
-					break;
-				case 'plugin':
-					if ( $current_theme == 'Twenty Twelve' ) {
-						// Use optimized "twentytwelve" template
-						load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentytwelve.php', false );
-					}
-					elseif ( $current_theme == 'Twenty Thirteen' ) {
-						// Use optimized "twentythirteen" template
-						load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentythirteen.php', false );
-					}
-					elseif ( $current_theme == 'Twenty Fourteen' ) {
-						// Use optimized "twentyfourteen" template
-						load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentyfourteen.php', false );
-					}
-					elseif ( $current_theme == 'Twenty Fifteen' ) {
-						// Use optimized "twentyfifteen" template
-						load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentyfifteen.php', false );
-					}
-					elseif ( $current_theme == 'Twenty Sixteen' ) {
-						// Use optimized "twentysixteen" template
-						load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentysixteen.php', false );
-					}
-					elseif ( $current_theme == 'Twenty Seventeen' ) {
-						// Use optimized "twentyseventeen" template
-						load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentyseventeen.php', false );
-					}
-					elseif ( $current_theme == 'Twenty Nineteen' ) {
-						// Use optimized "twentynineteen" template
-						load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentynineteen.php', false );
-					}
-					elseif ( $current_theme == 'Twenty Twenty' ) {
-						// Use optimized "twentytwenty" template
-						load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentytwenty.php', false );
-					}
-					else {
-						// Use default template
-						load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-default.php', false );
-					}
-					break;
-				default:
-					if ( $current_theme == 'Twenty Sixteen' ) {
-						// Use default templates path for 'Twenty Sixteen' theme
-						get_template_part( 'template-parts/content', 'search' );
-					}
-					else {
-						// Use default templates path for generic themes
-						get_template_part( 'content', 'search' );
-					}
-					break;
-			}
+      if ( $amp ) {
+        // Manage items array for AMP
+        $post->permalink = get_permalink( $post );
+        $post->post_content = substr( strip_tags( $post->post_content ), 0, 200 );
+        $post->image  = get_the_post_thumbnail_url();
+        $items[] = $post;
+      }
+      else {
+        switch ( $acs_frontpage_content_box_type ) {
+          case 'custom':
+            get_template_part( $acs_frontpage_content_box_value );
+            break;
+          case 'format':
+            if ( empty ( $acs_frontpage_content_box_value ) ) $acs_frontpage_content_box_value = 'content';
+  
+            // Retrieve post type
+            if ( $type === 'post' ) {
+              // Retrieve post type
+              $format = get_post_format();
+              if ( $format !== false ) {
+                // Use format content box
+                get_template_part( $acs_frontpage_content_box_value, $format );
+              }
+              else {
+                // Use default content box
+                get_template_part( $acs_frontpage_content_box_value );
+              }
+            }
+            else {
+              // Use type content box
+              get_template_part( $acs_frontpage_content_box_value, $type );
+            }
+            break;
+          case 'plugin':
+            if ( $current_theme == 'Twenty Twelve' ) {
+              // Use optimized "twentytwelve" template
+              load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentytwelve.php', false );
+            }
+            elseif ( $current_theme == 'Twenty Thirteen' ) {
+              // Use optimized "twentythirteen" template
+              load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentythirteen.php', false );
+            }
+            elseif ( $current_theme == 'Twenty Fourteen' ) {
+              // Use optimized "twentyfourteen" template
+              load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentyfourteen.php', false );
+            }
+            elseif ( $current_theme == 'Twenty Fifteen' ) {
+              // Use optimized "twentyfifteen" template
+              load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentyfifteen.php', false );
+            }
+            elseif ( $current_theme == 'Twenty Sixteen' ) {
+              // Use optimized "twentysixteen" template
+              load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentysixteen.php', false );
+            }
+            elseif ( $current_theme == 'Twenty Seventeen' ) {
+              // Use optimized "twentyseventeen" template
+              load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentyseventeen.php', false );
+            }
+            elseif ( $current_theme == 'Twenty Nineteen' ) {
+              // Use optimized "twentynineteen" template
+              load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentynineteen.php', false );
+            }
+            elseif ( $current_theme == 'Twenty Twenty' ) {
+              // Use optimized "twentytwenty" template
+              load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-twentytwenty.php', false );
+            }
+            else {
+              // Use default template
+              load_template( dirname( __DIR__ ) . '/templates/cloud-search-content-default.php', false );
+            }
+            break;
+          default:
+            if ( $current_theme == 'Twenty Sixteen' ) {
+              // Use default templates path for 'Twenty Sixteen' theme
+              get_template_part( 'template-parts/content', 'search' );
+            }
+            else {
+              // Use default templates path for generic themes
+              get_template_part( 'content', 'search' );
+            }
+            break;
+        }
+      }
 		}
 	}
 	else {
@@ -196,8 +209,10 @@ function acs_perform_search_documents( $search_templates_directory, $global_sear
 		if ( ! empty( $acs_results_no_results_box_value ) ) get_template_part( $acs_results_no_results_box_value );
 	}
 
-	// Return the contents of the output buffer
-	$items = ob_get_contents();
+  // Return the contents of the output buffer
+  if ( ! $amp ) {
+	  $items = ob_get_contents();
+  }
 
 	// Clean the output buffer and turn off output buffering
 	ob_end_clean();
@@ -216,13 +231,17 @@ function acs_perform_search_documents( $search_templates_directory, $global_sear
 		'found' => $result_search[ 'found' ],
 		'message' => ( $result_search[ 'found' ] == 0 && empty( $acs_results_no_results_box_value ) ) ? $acs_results_no_results_msg : '',
 		'load_more' => ( $result_search[ 'found' ] > ( $start + $size ) ),
-        'extras' => $extras
+    'extras' => $extras
 	) );
 
-	// Return result object
-	echo $acs_result->format_response();
+  if ( $amp ) {
+    echo json_encode( [ 'items' => $items ] );
+  } else {
+    // Return result object
+    echo $acs_result->format_response();
+  }
 
-    return null;
+  return null;
 }
 
 /**
