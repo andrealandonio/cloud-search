@@ -2,8 +2,8 @@
 **Contributors:** [lando1982](https://profiles.wordpress.org/lando1982), [sburdett](https://profiles.wordpress.org/sburdett), [methnen](https://profiles.wordpress.org/methnen), [bheadrick](https://profiles.wordpress.org/bheadrick)  
 **Tags:** aws, amazon, cloud, search, research, CloudSearch, cs, suggest, facet  
 **Requires at least:** 4.4  
-**Tested up to:** 5.5  
-**Stable tag:** 2.10.0  
+**Tested up to:** 5.6  
+**Stable tag:** 2.10.1  
 **License:** GPLv3  
 **License URI:** http://www.gnu.org/licenses/gpl.html  
 
@@ -101,6 +101,9 @@ Yes, you can manage WooCommerce product tags and EDD tags simply adding a little
 
 
 ## Changelog ##
+
+### 2.10.1 - 2020-12-09 ###
+* Tested up to latest WordPress releases
 
 ### 2.10.0 - 2020-10-23 ###
 * Added AMP management in API results
