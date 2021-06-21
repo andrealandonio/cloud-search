@@ -294,9 +294,10 @@ function acs_index_documents_search( $key, $key_type, $start = 0, $size = ACS::S
 	if ( ! empty( $query_options ) ) $search_args[ 'queryOptions' ] = json_encode( $query_options );
 	if ( ! empty( $facets ) ) $search_args[ 'facet' ] = json_encode( $facets );
 
-	// Search documents
+	// Apply 'acs_search_args' filter hook
 	$search_args = apply_filters( 'acs_search_args', $search_args );
 
+	// Search documents
 	$result = $client->search( $search_args );
 
 	// Read result

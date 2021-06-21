@@ -125,6 +125,10 @@ function acs_menu_page_docs() {
                                 };
                                 add_filter( 'woocommerce_taxonomy_args_product_tag', 'my_woocommerce_taxonomy_args_product_tag', 10, 1 );
                             </pre>
+
+                            <h4><?php _e( 'Modify search arguments', ACS::PREFIX ) ?></h4>
+                            <p><?php _e( 'Using the "acs_search_args" filter hook you can programmatically modify (if you need to define a custom expression on the fly when certain conditions are met) the "$search_args" right before the query is sent to Amazon.', ACS::PREFIX ) ?></p>
+                            
                         </div>
 		                <?php
 		                break;
