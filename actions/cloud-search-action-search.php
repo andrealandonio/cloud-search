@@ -133,7 +133,7 @@ function acs_perform_search_documents( $search_templates_directory, $global_sear
             break;
           case 'format':
             if ( empty ( $acs_frontpage_content_box_value ) ) $acs_frontpage_content_box_value = 'content';
-  
+
             // Retrieve post type
             if ( $type === 'post' ) {
               // Retrieve post type
@@ -295,6 +295,8 @@ function acs_index_documents_search( $key, $key_type, $start = 0, $size = ACS::S
 	if ( ! empty( $facets ) ) $search_args[ 'facet' ] = json_encode( $facets );
 
 	// Search documents
+	$search_args = apply_filters( 'acs_search_args', $search_args );
+
 	$result = $client->search( $search_args );
 
 	// Read result
