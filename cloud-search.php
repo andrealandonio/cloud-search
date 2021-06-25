@@ -6,7 +6,7 @@ Author: Andrea Landonio
 Author URI: http://www.andrealandonio.it
 Text Domain: cloud-search
 Domain Path: /languages/
-Version: 2.11.0
+Version: 2.11.1
 License: GPL v3
 
 CloudSearch

@@ -186,10 +186,10 @@ add_filter( 'the_posts', 'acs_plugin_manage_the_posts', 9, 2 );
  */
 function acs_register_routes_hooks() {
 	// Define routes
-  $routes = array( 
-    'suggest' => 'acs_route_get_suggestions',
-    'results' => 'acs_search_documents'
-  );
+  	$routes = array( 
+    	'suggest' => 'acs_route_get_suggestions',
+    	'results' => 'acs_search_documents'
+  	);
 
 	// Loop routes
 	foreach ( $routes as $route_base => $route_callback ) {
@@ -197,7 +197,8 @@ function acs_register_routes_hooks() {
 		register_rest_route( ACS::API_NAMESPACE . '/v' . ACS::API_VERSION, '/' . $route_base, array(
 			array(
 				'methods' => WP_REST_Server::READABLE,
-				'callback' => $route_callback
+				'callback' => $route_callback,
+				'permission_callback'=>'__return_true'
 			)
 		) );
 	}
