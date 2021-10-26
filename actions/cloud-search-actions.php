@@ -34,8 +34,13 @@ function acs_get_client() {
 		/** @noinspection MissedFieldInspection */
 		$client = CloudSearchClient::factory( array(
 			'region' => ( defined( 'WP_ACS_REGION' ) ) ? WP_ACS_REGION : $settings->acs_aws_region,
-			'key' => ( defined( 'WP_ACS_ACCESS_KEY' ) ) ? WP_ACS_ACCESS_KEY : $settings->acs_aws_access_key_id,
-			'secret' => ( defined( 'WP_ACS_SECRET_KEY' ) ) ? WP_ACS_SECRET_KEY : $settings->acs_aws_secret_access_key
+			// 'key' => ( defined( 'WP_ACS_ACCESS_KEY' ) ) ? WP_ACS_ACCESS_KEY : $settings->acs_aws_access_key_id,
+			// 'secret' => ( defined( 'WP_ACS_SECRET_KEY' ) ) ? WP_ACS_SECRET_KEY : $settings->acs_aws_secret_access_key
+            'credentials' => array(
+                'key' => ( defined( 'WP_ACS_ACCESS_KEY' ) ) ? WP_ACS_ACCESS_KEY : $settings->acs_aws_access_key_id,
+                'secret' => ( defined( 'WP_ACS_SECRET_KEY' ) ) ? WP_ACS_SECRET_KEY : $settings->acs_aws_secret_access_key,
+                'token' => ( defined( 'WP_ACS_SESSION_TOKEN' ) ) ? WP_ACS_SESSION_TOKEN : $settings->acs_aws_session_token,
+            )
 		) );
 	}
 	else if ( acs_check_mandatory_configuration() ) {
@@ -67,7 +72,8 @@ function acs_get_domain_client() {
 			'region' => ( defined( 'WP_ACS_REGION' ) ) ? WP_ACS_REGION : $settings->acs_aws_region,
 			'credentials' => array(
 				'key' => ( defined( 'WP_ACS_ACCESS_KEY' ) ) ? WP_ACS_ACCESS_KEY : $settings->acs_aws_access_key_id,
-				'secret' => ( defined( 'WP_ACS_SECRET_KEY' ) ) ? WP_ACS_SECRET_KEY : $settings->acs_aws_secret_access_key
+				'secret' => ( defined( 'WP_ACS_SECRET_KEY' ) ) ? WP_ACS_SECRET_KEY : $settings->acs_aws_secret_access_key,
+				'token' => ( defined( 'WP_ACS_SESSION_TOKEN' ) ) ? WP_ACS_SESSION_TOKEN : $settings->acs_aws_session_token
 			),
 			'retries' => ( defined( 'WP_ACS_DOMAIN_CLIENT_RETRIES' ) ) ? WP_ACS_DOMAIN_CLIENT_RETRIES : 3,
 			'http' => array(

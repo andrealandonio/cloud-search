@@ -42,6 +42,10 @@ function acs_menu_page_settings() {
 						<th scope="row"><label for="acs_aws_secret_access_key"><?php _e( 'AWS Secret access key', ACS::PREFIX ) ?></label></th>
 						<td><input type="text" id="acs_aws_secret_access_key" name="acs_aws_secret_access_key" value="<?php echo $settings->acs_aws_secret_access_key ?>" /></td>
 					</tr>
+                    <tr valign="top">
+                        <th scope="row"><label for="acs_aws_session_token"><?php _e( 'AWS Session token', ACS::PREFIX ) ?></label></th>
+                        <td><input type="text" id="acs_aws_session_token" name="acs_aws_session_token" value="<?php echo $settings->acs_aws_session_token ?>" /></td>
+                    </tr>
 	                <tr valign="top">
 						<th scope="row"><label for="acs_aws_region"><?php _e( 'AWS Region', ACS::PREFIX ) ?> *</label></th>
 						<td>
@@ -706,6 +710,7 @@ function acs_manage_menu_page_settings_actions() {
 				// Read post data
 				$settings->acs_aws_access_key_id = ( !empty( $_POST[ 'acs_aws_access_key_id' ] ) ) ? wp_kses_post( $_POST[ 'acs_aws_access_key_id' ] ) : '';
 				$settings->acs_aws_secret_access_key = ( !empty( $_POST[ 'acs_aws_secret_access_key' ] ) ) ? wp_kses_post( $_POST[ 'acs_aws_secret_access_key' ] ) : '';
+				$settings->acs_aws_session_token = ( !empty( $_POST[ 'acs_aws_session_token' ] ) ) ? wp_kses_post( $_POST[ 'acs_aws_session_token' ] ) : '';
 				$settings->acs_aws_region = ( !empty( $_POST[ 'acs_aws_region' ] ) ) ? wp_kses_post( $_POST[ 'acs_aws_region' ] ) : '';
 				$settings->acs_search_endpoint = ( !empty( $_POST[ 'acs_search_endpoint' ] ) ) ? wp_kses_post( $_POST[ 'acs_search_endpoint' ] ) : '';
 				$settings->acs_search_domain_name = ( !empty( $_POST[ 'acs_search_domain_name' ] ) ) ? wp_kses_post( $_POST[ 'acs_search_domain_name' ] ) : '';

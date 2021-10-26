@@ -3,7 +3,7 @@ Contributors: lando1982, sburdett, methnen, bheadrick
 Tags: aws, amazon, cloud, search, research, CloudSearch, cs, suggest, facet
 Requires at least: 4.4
 Tested up to: 5.8
-Stable tag: 2.11.1
+Stable tag: 2.12.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -91,6 +91,9 @@ Yes, you can manage WooCommerce product tags and EDD tags simply adding a little
 5. Other settings (suggestions)
 
 == Changelog ==
+
+= 2.12.0 - 2021-10-26 =
+* Added AWS session token management
 
 = 2.11.1 - 2021-06-25 =
 * Added permission_callback in register_rest_route

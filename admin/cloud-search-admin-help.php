@@ -119,6 +119,7 @@ function acs_menu_page_help() {
             </p>
             <pre>define('WP_ACS_ACCESS_KEY', 'KEY_HERE');
 define('WP_ACS_SECRET_KEY', 'KEY_HERE');
+define('WP_ACS_SESSION_TOKEN', 'KEY_HERE');
 define('WP_ACS_REGION', 'REGION_HERE');
 define('WP_ACS_SEARCH_ENDPOINT', 'SEARCH_ENDPOINT_HERE');
 define('WP_ACS_SEARCH_DOMAIN', 'SEARCH_DOMAIN_HERE');</pre>

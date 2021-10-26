@@ -34,11 +34,12 @@ function acs_check_connection() {
 			/** @noinspection MissedFieldInspection */
 			CloudSearchDomainClient::factory( array(
 				'endpoint' => ( defined( 'WP_ACS_SEARCH_ENDPOINT' ) ) ? WP_ACS_SEARCH_ENDPOINT : $settings->acs_search_endpoint,
-				'region' => ( defined( 'WP_ACS_REGION' ) ) ? WP_ACS_REGION : $settings->acs_aws_region,
-				'credentials' => array(
-					'key' => ( defined( 'WP_ACS_ACCESS_KEY' ) ) ? WP_ACS_ACCESS_KEY : $settings->acs_aws_access_key_id,
-					'secret' => ( defined( 'WP_ACS_SECRET_KEY' ) ) ? WP_ACS_SECRET_KEY : $settings->acs_aws_secret_access_key,
-				)
+                'region' => ( defined( 'WP_ACS_REGION' ) ) ? WP_ACS_REGION : $settings->acs_aws_region,
+                'credentials' => array(
+                    'key' => ( defined( 'WP_ACS_ACCESS_KEY' ) ) ? WP_ACS_ACCESS_KEY : $settings->acs_aws_access_key_id,
+                    'secret' => ( defined( 'WP_ACS_SECRET_KEY' ) ) ? WP_ACS_SECRET_KEY : $settings->acs_aws_secret_access_key,
+                    'token' => ( defined( 'WP_ACS_SESSION_TOKEN' ) ) ? WP_ACS_SESSION_TOKEN : $settings->acs_aws_session_token
+                )
 			) );
 
 			$check_connection = true;

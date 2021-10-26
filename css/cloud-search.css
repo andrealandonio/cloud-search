@@ -1,6 +1,7 @@
 /* BUTTONS, SELECTS AND INPUTS */
 input#acs_aws_access_key_id {width: 100%}
 input#acs_aws_secret_access_key {width: 100%}
+input#acs_aws_session_token {width: 100%}
 input#acs_search_endpoint {width: 100%}
 
 form#acs_form_setting h4 {color: #0073AA; font-size: 18px; font-style: italic}
