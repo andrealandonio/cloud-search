@@ -2,7 +2,7 @@
 Contributors: lando1982, sburdett, methnen, bheadrick
 Tags: aws, amazon, cloud, search, research, CloudSearch, cs, suggest, facet
 Requires at least: 4.4
-Tested up to: 5.8
+Tested up to: 5.9
 Stable tag: 2.12.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
