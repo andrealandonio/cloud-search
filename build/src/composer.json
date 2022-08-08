@@ -1,0 +1,30 @@
+{
+    "name": "andrealandonio/cloud-search-raw",
+    "require": {
+        "php": "^7.0||^8.0",
+        "aws/aws-sdk-php": "^3.171"
+    },
+    "require-dev": {
+        "humbug/php-scoper": "^0.17.5",
+        "jetbrains/phpstorm-stubs": "^v2022.1"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-install-cmd": [
+            "@prefix-dependencies"
+        ],
+        "prefix-dependencies": [
+            "@prefix-aws"
+        ],
+        "prefix-aws": [
+            "@prefix-guzzle",
+            "@php ./vendor/humbug/php-scoper/bin/php-scoper add-prefix --prefix=WP_Cloud_Search --output-dir=../../vendor/mtdowling/jmespath.php --config=php-scoper/jmespath.inc.php --force --quiet",
+            "@php ./vendor/humbug/php-scoper/bin/php-scoper add-prefix --prefix=WP_Cloud_Search --output-dir=../../vendor/aws/aws-sdk-php --config=php-scoper/aws-sdk.inc.php --force --quiet"
+        ],
+        "prefix-guzzle": [
+            "@php ./vendor/humbug/php-scoper/bin/php-scoper add-prefix --prefix=WP_Cloud_Search --output-dir=../../vendor/guzzlehttp --config=php-scoper/guzzlehttp.inc.php --force --quiet",
+            "@php ./vendor/humbug/php-scoper/bin/php-scoper add-prefix --prefix=WP_Cloud_Search --output-dir=../../vendor/psr --config=php-scoper/psr.inc.php --force --quiet"
+        ]
+    }
+}

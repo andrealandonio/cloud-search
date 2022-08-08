@@ -29,6 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Security check
 if ( ! defined( 'ABSPATH' ) ) die( 'Direct access to files not allowed' );
 
+require_once('vendor/scoper-autoload.php');
+
 /**
  * Includes & loader
  */

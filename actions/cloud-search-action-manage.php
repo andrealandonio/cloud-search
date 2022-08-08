@@ -3,9 +3,6 @@
  * Imports
  */
 
-// Autoloader
-require_once(  plugin_dir_path( __DIR__ ) . 'vendor/aws/aws-autoloader.php' );
-
 use \WP_Cloud_Search\Aws\CloudSearchDomain\CloudSearchDomainClient;
 use \WP_Cloud_Search\Aws\CloudSearch\CloudSearchClient;
 
@@ -33,6 +30,7 @@ function acs_check_connection() {
 		if ( acs_check_basic_configuration() ) {
 			/** @noinspection MissedFieldInspection */
 			CloudSearchDomainClient::factory( array(
+				'version' => '2013-01-01',
 				'endpoint' => ( defined( 'WP_ACS_SEARCH_ENDPOINT' ) ) ? WP_ACS_SEARCH_ENDPOINT : $settings->acs_search_endpoint,
                 'region' => ( defined( 'WP_ACS_REGION' ) ) ? WP_ACS_REGION : $settings->acs_aws_region,
                 'credentials' => array(
@@ -48,6 +46,7 @@ function acs_check_connection() {
 			// Try to use IAM roles to connect to the client
 			/** @noinspection MissedFieldInspection */
 			$client = CloudSearchClient::factory( array(
+				'version' => '2013-01-01',
 				'region' => ( defined( 'WP_ACS_REGION' ) ) ? WP_ACS_REGION : $settings->acs_aws_region
 			) );
 

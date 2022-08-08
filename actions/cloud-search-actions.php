@@ -3,9 +3,6 @@
  * Imports
  */
 
-// Autoloader
-require_once(  plugin_dir_path( __DIR__ ) . 'vendor/aws/aws-autoloader.php' );
-
 use \WP_Cloud_Search\Aws\CloudSearch\CloudSearchClient;
 use \WP_Cloud_Search\Aws\CloudSearchDomain\CloudSearchDomainClient;
 
@@ -33,6 +30,7 @@ function acs_get_client() {
 	if ( acs_check_basic_configuration() ) {
 		/** @noinspection MissedFieldInspection */
 		$client = CloudSearchClient::factory( array(
+			'version' => '2013-01-01',
 			'region' => ( defined( 'WP_ACS_REGION' ) ) ? WP_ACS_REGION : $settings->acs_aws_region,
 			// 'key' => ( defined( 'WP_ACS_ACCESS_KEY' ) ) ? WP_ACS_ACCESS_KEY : $settings->acs_aws_access_key_id,
 			// 'secret' => ( defined( 'WP_ACS_SECRET_KEY' ) ) ? WP_ACS_SECRET_KEY : $settings->acs_aws_secret_access_key
@@ -47,6 +45,7 @@ function acs_get_client() {
 		// Try to use IAM roles to connect to the client
 		/** @noinspection MissedFieldInspection */
 		$client = CloudSearchClient::factory( array(
+			'version' => '2013-01-01',
 			'region' => ( defined( 'WP_ACS_REGION' ) ) ? WP_ACS_REGION : $settings->acs_aws_region
 		) );
 	}
@@ -67,7 +66,7 @@ function acs_get_domain_client() {
 	$domain_client = null;
 	if ( acs_check_basic_configuration() ) {
 		/** @noinspection MissedFieldInspection */
-		$domain_client = CloudSearchDomainClient::factory( array(
+		$args = array(
 			'endpoint' => ( defined( 'WP_ACS_SEARCH_ENDPOINT' ) ) ? WP_ACS_SEARCH_ENDPOINT : $settings->acs_search_endpoint,
 			'region' => ( defined( 'WP_ACS_REGION' ) ) ? WP_ACS_REGION : $settings->acs_aws_region,
 			'credentials' => array(
@@ -79,13 +78,17 @@ function acs_get_domain_client() {
 			'http' => array(
 				'connect_timeout' => ( defined( 'WP_ACS_DOMAIN_CLIENT_CONNECT_TIMEOUT' ) ) ? WP_ACS_DOMAIN_CLIENT_CONNECT_TIMEOUT : 0,
 				'timeout' => ( defined( 'WP_ACS_DOMAIN_CLIENT_TIMEOUT' ) ) ? WP_ACS_DOMAIN_CLIENT_TIMEOUT : 0
-			)
-		) );
+			),
+			'version' => '2013-01-01',
+		);
+
+		$domain_client = CloudSearchDomainClient::factory( $args );
 	}
 	else if ( acs_check_mandatory_configuration() ) {
 		// Try to use IAM roles to connect to the client
 		/** @noinspection MissedFieldInspection */
 		$domain_client = CloudSearchDomainClient::factory( array(
+			'version' => '2013-01-01',
 			'endpoint' => ( defined( 'WP_ACS_SEARCH_ENDPOINT' ) ) ? WP_ACS_SEARCH_ENDPOINT : $settings->acs_search_endpoint,
 			'retries' => ( defined( 'WP_ACS_DOMAIN_CLIENT_RETRIES' ) ) ? WP_ACS_DOMAIN_CLIENT_RETRIES : 3,
 			'http' => array(
