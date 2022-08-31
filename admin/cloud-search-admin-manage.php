@@ -103,7 +103,7 @@ function acs_menu_page_manage() {
 						?>
 						<tr valign="top">
 							<th scope="row"><?php _e( 'Status', ACS::PREFIX ) ?></th>
-							<td class="field_index_error"><?php _e( 'Connection with CloudSearch index not works or incomplete', ACS::PREFIX ) ?></td>
+							<td class="field_index_error"><?php _e( 'Connection with CloudSearch index is not working or incomplete', ACS::PREFIX ) ?></td>
 						</tr>
 						<?php
 					}

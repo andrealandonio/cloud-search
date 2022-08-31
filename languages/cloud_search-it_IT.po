@@ -2901,7 +2901,7 @@ msgstr "Operazione in corso"
 
 #: admin/cloud-search-admin-manage.php:106
 #: deploy/admin/cloud-search-admin-manage.php:106
-msgid "Connection with CloudSearch index not works or incomplete"
+msgid "Connection with CloudSearch index is not working or incomplete"
 msgstr "La connessione con CloudSearch non funziona o è incompleta"
 
 #: admin/cloud-search-admin-manage.php:121
