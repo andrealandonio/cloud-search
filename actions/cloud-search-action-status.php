@@ -98,8 +98,7 @@ function acs_index_site_documents() {
         ) );
     }
     catch ( Exception $e ) {
-
-    	echo print_r($e->getMessage(), true);
+//    	echo print_r($e->getMessage(), true);
 
         // Prepare error result object
         $acs_result->set_code( 'error' );
