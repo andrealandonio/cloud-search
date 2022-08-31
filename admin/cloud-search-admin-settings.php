@@ -36,15 +36,15 @@ function acs_menu_page_settings() {
 				<tbody>
 	                <tr valign="top">
 						<th scope="row"><label for="acs_aws_access_key_id"><?php _e( 'AWS Access key ID', ACS::PREFIX ) ?></label></th>
-						<td><input type="text" id="acs_aws_access_key_id" name="acs_aws_access_key_id" value="<?php echo $settings->acs_aws_access_key_id ?>" /></td>
+						<td><input type="text" id="acs_aws_access_key_id" name="acs_aws_access_key_id" value="<?php echo $settings->acs_aws_access_key_id ?? '' ?>" /></td>
 					</tr>
 	                <tr valign="top">
 						<th scope="row"><label for="acs_aws_secret_access_key"><?php _e( 'AWS Secret access key', ACS::PREFIX ) ?></label></th>
-						<td><input type="text" id="acs_aws_secret_access_key" name="acs_aws_secret_access_key" value="<?php echo $settings->acs_aws_secret_access_key ?>" /></td>
+						<td><input type="text" id="acs_aws_secret_access_key" name="acs_aws_secret_access_key" value="<?php echo $settings->acs_aws_secret_access_key ?? '' ?>" /></td>
 					</tr>
                     <tr valign="top">
                         <th scope="row"><label for="acs_aws_session_token"><?php _e( 'AWS Session token', ACS::PREFIX ) ?></label></th>
-                        <td><input type="text" id="acs_aws_session_token" name="acs_aws_session_token" value="<?php echo $settings->acs_aws_session_token ?>" /></td>
+                        <td><input type="text" id="acs_aws_session_token" name="acs_aws_session_token" value="<?php echo $settings->acs_aws_session_token ?? '' ?>" /></td>
                     </tr>
 	                <tr valign="top">
 						<th scope="row"><label for="acs_aws_region"><?php _e( 'AWS Region', ACS::PREFIX ) ?> *</label></th>
@@ -78,11 +78,11 @@ function acs_menu_page_settings() {
 				<tbody>
 					<tr valign="top">
 						<th scope="row"><label for="acs_search_endpoint"><?php _e( 'Search endpoint', ACS::PREFIX ) ?> *</label></th>
-						<td><input type="text" id="acs_search_endpoint" name="acs_search_endpoint" value="<?php echo $settings->acs_search_endpoint ?>" /></td>
+						<td><input type="text" id="acs_search_endpoint" name="acs_search_endpoint" value="<?php echo $settings->acs_search_endpoint ?? '' ?>" /></td>
 					</tr>
 					<tr valign="top">
 						<th scope="row"><label for="acs_search_domain_name"><?php _e( 'Domain name', ACS::PREFIX ) ?> *</label></th>
-						<td><input type="text" id="acs_search_domain_name" name="acs_search_domain_name" value="<?php echo $settings->acs_search_domain_name ?>" /></td>
+						<td><input type="text" id="acs_search_domain_name" name="acs_search_domain_name" value="<?php echo $settings->acs_search_domain_name ?? '' ?>" /></td>
 					</tr>
 				</tbody>
 			</table>
@@ -101,7 +101,7 @@ function acs_menu_page_settings() {
 						<th scope="row"><?php _e( 'Post types', ACS::PREFIX ) ?></th>
 						<td>
                             <?php
-                            $acs_schema_types = $settings->acs_schema_types;
+                            $acs_schema_types = $settings->acs_schema_types ?? array();
                             $acs_schema_types = $acs_schema_types ? explode( ACS::SEPARATOR, $acs_schema_types ) : array();
                             $count = 0;
 
@@ -121,7 +121,7 @@ function acs_menu_page_settings() {
                         <th scope="row"><?php _e( 'Field types', ACS::PREFIX ) ?></th>
                         <td>
                             <?php
-                            $acs_schema_fields = $settings->acs_schema_fields;
+                            $acs_schema_fields = $settings->acs_schema_fields ?? array();
                             $acs_schema_fields = $acs_schema_fields ? explode( ACS::SEPARATOR, $acs_schema_fields ) : array();
                             $count = 0;
 
@@ -141,7 +141,7 @@ function acs_menu_page_settings() {
                         <th scope="row"><?php _e( 'Taxonomy types', ACS::PREFIX ) ?></th>
                         <td>
                             <?php
-                            $acs_schema_taxonomies = $settings->acs_schema_taxonomies;
+                            $acs_schema_taxonomies = $settings->acs_schema_taxonomies ?? array();
                             $acs_schema_taxonomies = $acs_schema_taxonomies ? explode( ACS::SEPARATOR, $acs_schema_taxonomies ) : array();
                             $count = 0;
 
@@ -161,7 +161,7 @@ function acs_menu_page_settings() {
                         <th scope="row"><?php _e( 'Searchable taxonomies', ACS::PREFIX ) ?></th>
                         <td>
                             <?php
-							$acs_schema_searchable_taxonomies = $settings->acs_schema_searchable_taxonomies;
+							$acs_schema_searchable_taxonomies = $settings->acs_schema_searchable_taxonomies ?? array();
 							$acs_schema_searchable_taxonomies = $acs_schema_searchable_taxonomies ? explode( ACS::SEPARATOR, $acs_schema_searchable_taxonomies ) : array();
 							$count = 1;
 							?>
@@ -304,7 +304,7 @@ function acs_menu_page_settings() {
                     <tr valign="top">
                         <th scope="row"><label for="acs_frontpage_custom_css"><?php _e( 'Custom CSS', ACS::PREFIX ) ?></label></th>
                         <td>
-                            <textarea id="acs_frontpage_custom_css" name="acs_frontpage_custom_css" rows="5"><?php echo $settings->acs_frontpage_custom_css ?></textarea>
+                            <textarea id="acs_frontpage_custom_css" name="acs_frontpage_custom_css" rows="5"><?php echo $settings->acs_frontpage_custom_css ?? '' ?></textarea>
                             <div class="acs_row_tips">
                                 <span><?php _e( 'Customize search page CSS here.', ACS::PREFIX ) ?></span>
                             </div>
