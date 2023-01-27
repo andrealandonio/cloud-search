@@ -784,6 +784,14 @@ function acs_manage_menu_page_settings_actions() {
 				$settings->acs_hide_section_docs =  ( !empty( $_POST[ 'acs_hide_section_docs' ] ) ) ? 1 : 0;
 				$settings->acs_hide_section_import =  ( !empty( $_POST[ 'acs_hide_section_import' ] ) ) ? 1 : 0;
 
+                // Normalize acs_search_endpoint field for adding HTTPS protocol
+                if ( str_starts_with( $settings->acs_search_endpoint, 'http://' ) ) {
+                    $settings->acs_search_endpoint = str_replace( 'http://', 'https://', $settings->acs_search_endpoint);
+                }
+                if ( ! str_starts_with( $settings->acs_search_endpoint, 'https://' ) ) {
+                    $settings->acs_search_endpoint = 'https://' . $settings->acs_search_endpoint;
+                }
+                
 				// Remove '.php' occurrences from boxes value
 				$settings->acs_frontpage_content_box_value = str_replace( '.php', '', $settings->acs_frontpage_content_box_value );
 				$settings->acs_results_no_results_box_value = str_replace( '.php', '', $settings->acs_results_no_results_box_value );
