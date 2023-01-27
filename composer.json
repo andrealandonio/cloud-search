@@ -1,0 +1,16 @@
+{
+    "name": "andrealandonio/cloud-search",
+    "autoload": {
+        "classmap": [
+            "./"
+        ],
+        "exclude-from-classmap": [
+          "./build"
+        ],
+        "files": [
+            "./vendor/guzzlehttp/promises/src/functions.php",
+            "./vendor/guzzlehttp/guzzle/src/functions.php",
+            "./vendor/aws/aws-sdk-php/functions.php"
+        ]
+    }
+}

@@ -1,0 +1,14 @@
+FROM php:8.0-cli
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+RUN useradd -ms /bin/bash user
+RUN mkdir -p /usr/src/app && chown user /usr/src/app
+USER user
+
+COPY ./src /cloudsearch/build/src
+COPY ../vendor /cloudsearch/vendor
+
+WORKDIR /cloudsearch/build/src
+
+RUN composer install

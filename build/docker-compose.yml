@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    build-cloudsearch:
+      labels:
+        - "traefik.enable=false"
+      image: composer:2
+      volumes:
+        - ./src:/cloudsearch/build/src
+        - ../vendor:/cloudsearch/vendor
+      command: bash -c '''
+          cd /cloudsearch/build/src
+          && composer install
+        '''

@@ -1,0 +1,11 @@
+<?php
+
+namespace WP_Cloud_Search\Aws\DatabaseMigrationService\Exception;
+
+use WP_Cloud_Search\Aws\Exception\AwsException;
+/**
+ * Represents an error interacting with the **AWS Database Migration Service** service.
+ */
+class DatabaseMigrationServiceException extends AwsException
+{
+}
