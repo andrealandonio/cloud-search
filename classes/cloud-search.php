@@ -8,7 +8,7 @@ class ACS {
     /**
      * Class constants
      */
-    const VERSION = '2.12.0';
+    const VERSION = '3.0.0';
     const PREFIX = 'cloud_search';
     const SEPARATOR = ',';
 

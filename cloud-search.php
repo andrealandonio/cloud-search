@@ -6,11 +6,11 @@ Author: Andrea Landonio
 Author URI: http://www.andrealandonio.it
 Text Domain: cloud-search
 Domain Path: /languages/
-Version: 2.12.0
+Version: 3.0.0
 License: GPL v3
 
 CloudSearch
-Copyright (C) 2013-2020, Andrea Landonio - landonio.andrea@gmail.com
+Copyright (C) 2013-2023, Andrea Landonio - landonio.andrea@gmail.com
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
