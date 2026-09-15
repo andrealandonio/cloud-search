@@ -11,7 +11,7 @@
 	"author": "lando1982",
 	"license": "ISC",
 	"devDependencies": {
-		"grunt": "^1.0.0",
+		"grunt": "^1.6.3",
 		"grunt-contrib-copy": "^1.0.0",
 		"grunt-contrib-clean": "^1.0.0",
 		"grunt-contrib-jshint": "^3.2.0",
